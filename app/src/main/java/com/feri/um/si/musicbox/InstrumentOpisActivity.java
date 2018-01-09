@@ -29,7 +29,6 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
     
      private static final String TAG="InstrumentDetail";
      public static final String KEY_INSTRUMENT_ID="key_instrument_id";
-
      private FirebaseFirestore mFirestore;
      private DocumentReference mInstrumentRef;
      private ListenerRegistration mInstrumentRegistration;
