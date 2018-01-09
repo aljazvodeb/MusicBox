@@ -26,7 +26,7 @@ import butterknife.OnClick;
   */
 
 public class InstrumentOpisActivity extends AppCompatActivity implements EventListener<DocumentSnapshot> {
-
+    
      private static final String TAG="InstrumentDetail";
      public static final String KEY_INSTRUMENT_ID="key_instrument_id";
 
