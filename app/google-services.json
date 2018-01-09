@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "727184857576",
+    "firebase_url": "https://musicbox-390b3.firebaseio.com",
+    "project_id": "musicbox-390b3",
+    "storage_bucket": "musicbox-390b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727184857576:android:c800053984b4ea7a",
+        "android_client_info": {
+          "package_name": "si.um.feri.musicbox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "727184857576-9vmvh21tksjpa6rktk5rp96j5ct0qdp6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "si.um.feri.musicbox",
+            "certificate_hash": "2eef36efdc9495c659439e84b7b3e9b68b44b6b0"
+          }
+        },
+        {
+          "client_id": "727184857576-j4sktd1ma4uq2a217tebj5gg7pl3ct12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRMrEf3kOffpKpuZ2YZjOqqwLbvWvSw1s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "727184857576-j4sktd1ma4uq2a217tebj5gg7pl3ct12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
