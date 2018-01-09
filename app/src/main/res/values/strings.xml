@@ -1,3 +1,153 @@
 <resources>
     <string name="app_name">MusicBox</string>
+    <string name="vse_kategorije">Vse kategorije</string>
+    <string name="vsa_mesta">Kjerkoli</string>
+    <string name="vse_cene">Katerakoli cena</string>
+    <string name="vsi_instrumenti">Vsi instrumenti </string>
+    <string name="kategorija">Kategorija</string>
+    <string name="mesto">Mesto</string>
+    <string name="cena">Cena</string>
+    <string name="sortiraj">Sortiraj po</string>
+    <string name="filtri">Filtri</string>
+    <string name="iskanje">Iskanje</string>
+    <string name="sortiraj_po_ceni">Sortiraj po ceni</string>
+    <string name="sortirano_po_ceni">Sortirano po ceni</string>
+    <string name="sortiraj_po_kategoriji">Sortiraj po kategoriji</string>
+    <string name="sortirano_po_kategoriji">Sortirano po kategoriji</string>
+    <string name="odjava">Odjava</string>
+    <string name="potrdi">Potrdi</string>
+    <string name="preklic">Preklici</string>
+    <string name="sporocilo_ni_rezultatov">Ni bilo mogoce najti rezulatov.</string>
+    <string name="sporocilo_napaka">Ni podatkov.</string>
+    <string name="name">Ime</string>
+    <string name="cena_1">0-10€</string>
+    <string name="cena_2">10-20€</string>
+    <string name="cena_3">20€+</string>
+    <string name="vnesite_url_fotografije">Vnesite url fotografije</string>
+    <string name="url_fotografije">URL fotografije</string>
+    <string name="opisite_glasbilo">Opišite glasbilo</string>
+    <string name="poimenujte_glasbilo">Poimenujte glasbilo</string>
+    <string name="ime_glasbila">Ime glasbila</string>
+    <string name="dodaj">DODAJ</string>
+    <string name="vnesite_ceno">Vnesite ceno</string>
+    <string name="dodaj_glasbilo">Dodaj</string>
+    <string name="profil">Profil</string>
+    <string name="kosarica">Košarica</string>
+    <string name="stanje">Stanje</string>
+    <string name="cena_dan">Cena/dan</string>
+    <string name="vrsta_glasbila">Vrsta glasbila</string>
+    <string name="podajte_kratek_opis">Podajte kratek opis</string>
+    <string name="ime_glasbila1">Ime glasbila</string>
+    <!-- seznam glasbil -->
+    <string-array name="kategorije">
+        <item>@string/vse_kategorije</item>
+        <item>Bobni</item>
+        <item>Citre</item>
+        <item>Fagoti</item>
+        <item>Flavte</item>
+        <item>Harmonike</item>
+        <item>Kontrabasi</item>
+        <item>Kitare</item>
+        <item>Klarineti</item>
+        <item>Klavirji</item>
+        <item>Oboe</item>
+        <item>Pikoli</item>
+        <item>Saksofoni</item>
+        <item>Tamburice</item>
+        <item>Trobente</item>
+        <item>Tube</item>
+        <item>Violine</item>
+    </string-array>
+    <!-- seznam najbolj naseljenih mest v Sloveniji -->
+    <string-array name="mesta">
+        <item>@string/vsa_mesta</item>
+        <item>Ajdovščina</item>
+        <item>Bled</item>
+        <item>Bovec</item>
+        <item>Brežice</item>
+        <item>Celje</item>
+        <item>Cerknica</item>
+        <item>Črnomelj</item>
+        <item>Domžale</item>
+        <item>Dravograd</item>
+        <item>Gornja Radgona</item>
+        <item>Gornji Grad</item>
+        <item>Grosuplje</item>
+        <item>Hrastnik</item>
+        <item>Idrija</item>
+        <item>Ilirska Bistrica</item>
+        <item>Izola</item>
+        <item>Jesenice</item>
+        <item>Kamnik</item>
+        <item>Kobarid</item>
+        <item>Kočevje</item>
+        <item>Koper</item>
+        <item>Kostanjevica na Krki</item>
+        <item>Kranj</item>
+        <item>Krško</item>
+        <item>Laško</item>
+        <item>Lenart</item>
+        <item>Lendava</item>
+        <item>Litija</item>
+        <item>Ljubljana</item>
+        <item>Ljutomer</item>
+        <item>Logatec</item>
+        <item>Maribor</item>
+        <item>Medvode</item>
+        <item>Mengeš</item>
+        <item>Metlika</item>
+        <item>Mežica</item>
+        <item>Murska Sobota</item>
+        <item>Nova Gorica</item>
+        <item>Novo Mesto</item>
+        <item>Ormož</item>
+        <item>Piran</item>
+        <item>Postojna</item>
+        <item>Prevalje</item>
+        <item>Ptuj</item>
+        <item>Radeče</item>
+        <item>Radovlijca</item>
+        <item>Ravne na Koroškem</item>
+        <item>Ribnica</item>
+        <item>Rogaška Slatina</item>
+        <item>Ruše</item>
+        <item>Sevnica</item>
+        <item>Sežana</item>
+        <item>Slovenj Gradec</item>
+        <item>Slovenjska Bistrica</item>
+        <item>Slovenjske Konjice</item>
+        <item>Šempeter pri Gorici</item>
+        <item>Šentjur</item>
+        <item>Škofja Loka</item>
+        <item>Šoštanj</item>
+        <item>Tolmin</item>
+        <item>Trbovlje</item>
+        <item>Trebnje</item>
+        <item>Tržič</item>
+        <item>Turnišče</item>
+        <item>Velenje</item>
+        <item>Vipava</item>
+        <item>Vipavski Križ</item>
+        <item>Višnja Gora</item>
+        <item>Vrhnika</item>
+        <item>Zagorje on Savi</item>
+        <item>Žalec</item>
+        <item>Železniki</item>
+        <item>Žiri</item>
+    </string-array>
+    <string-array name="cene">
+        <item>@string/vse_cene</item>
+        <item>@string/cena_1</item>
+        <item>@string/cena_2</item>
+        <item>@string/cena_3</item>
+    </string-array>
+    <string-array name="stanje">
+        <item>Odlično</item>
+        <item>Dobro</item>
+        <item>Slabo</item>
+    </string-array>
+    <string-array name="sortiraj_po">
+        <item>@string/sortiraj_po_ceni</item>
+        <item>@string/sortiraj_po_kategoriji</item>
+    </string-array>
 </resources>

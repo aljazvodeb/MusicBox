@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E0E0E0"
+    tools:context="com.feri.um.si.musicbox.InstrumentOpisActivity">
+
+    <RelativeLayout
+        android:id="@+id/vrhnji_del"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp">
+
+        <ImageView
+            android:id="@+id/instrument_slika"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:alpha="1.0"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/glasbilo" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/gumb_nazaj"
+            android:background="@drawable/gradient_up" />
+
+        <ImageView
+            android:id="@+id/gumb_nazaj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:layout_alignLeft="@+id/instrument_ime"
+            android:layout_marginTop="16dp"
+            app:srcCompat="@drawable/ic_close_white_24px" />
+
+        <TextView
+            android:id="@+id/instrument_ime"
+            style="@style/AppTheme.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/instrument_kategorija"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            tools:text="Velik koncertni klavir" />
+
+        <TextView
+            android:id="@+id/instrument_kategorija"
+            style="@style/AppTheme.Subheader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/instrument_slika"
+            android:layout_alignLeft="@+id/instrument_ime"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/white"
+            tools:text="Klavir" />
+
+        <TextView
+            android:id="@+id/instrument_razdelitev"
+            style="@style/AppTheme.TextDivider"
+            android:layout_alignTop="@+id/instrument_kategorija"
+            android:layout_toRightOf="@+id/instrument_kategorija"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/instrument_mesto"
+            style="@style/AppTheme.Subheader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/instrument_razdelitev"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/instrument_razdelitev"
+            android:layout_toRightOf="@+id/instrument_razdelitev"
+            android:textColor="@android:color/white"
+            tools:text="Celje" />
+
+        <TextView
+            android:id="@+id/instrument_cena"
+            style="@style/AppTheme.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/instrument_razdelitev"
+            android:layout_marginLeft="27dp"
+            android:layout_marginStart="27dp"
+            android:layout_toEndOf="@+id/instrument_mesto"
+            android:layout_toRightOf="@+id/instrument_mesto"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            tools:text="20€" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_opis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vrhnji_del"
+        android:background="@android:color/transparent"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        android:paddingTop="28dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/prikazi_prazno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/vrhnji_del"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:src="@drawable/sad"
+            style="@style/AppTheme.sad" />
+
+        <TextView
+            style="@style/AppTheme.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sporocilo_napaka"
+            android:textColor="@color/greyDisabled" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/kosarica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="18dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
+        app:backgroundTint="@android:color/holo_green_dark"
+        app:srcCompat="@drawable/ic_add_shopping_cart_black_24dp" />
+
+</RelativeLayout>

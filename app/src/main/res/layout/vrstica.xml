@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/vrstica_slika"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="#757575"
+        android:scaleType="centerCrop"
+        android:src="@drawable/glasbilo" />
+
+    <TextView
+        android:id="@+id/vrstica_ime"
+        style="@style/AppTheme.Subheader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/vrstica_slika"
+        android:layout_toRightOf="@+id/vrstica_slika"
+        android:ellipsize="end"
+        android:maxLines="1"
+        tools:text="Koncertni klavir" />
+
+    <TextView
+        android:id="@+id/vrstica_kategorija"
+        style="@style/AppTheme.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/vrstica_ime"
+        android:layout_alignLeft="@+id/vrstica_ime"
+        android:layout_alignRight="@+id/vrstica_ime"
+        android:layout_alignStart="@+id/vrstica_ime"
+        android:layout_below="@+id/vrstica_ime"
+        android:textColor="@color/greySecondary"
+        tools:text="Klavir" />
+
+    <TextView
+        android:id="@+id/vrstica_mesto"
+        style="@style/AppTheme.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/vrstica_ime"
+        android:layout_alignStart="@+id/vrstica_ime"
+        android:layout_below="@+id/vrstica_kategorija"
+        android:textColor="@color/greySecondary"
+        tools:text="Ljubljana" />
+
+    <TextView
+        android:id="@+id/vrstica_cena"
+        style="@style/AppTheme.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/greySecondary"
+        tools:text="20€" />
+
+</RelativeLayout>
