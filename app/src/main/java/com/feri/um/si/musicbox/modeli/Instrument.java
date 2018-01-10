@@ -12,11 +12,12 @@ public class Instrument {
     private String fotografija;
     private String opis;
     private String stanje;
+    private String najemodajalec;
     private int cena;
 
     public Instrument() {}
 
-    public Instrument(String ime, String mesto, String kategorija, String fotografija, String opis, String stanje,
+    public Instrument(String ime, String mesto, String kategorija, String fotografija, String opis, String stanje, String najemodajalec,
                       int cena) {
         this.ime = ime;
         this.mesto = mesto;
@@ -24,6 +25,7 @@ public class Instrument {
         this.fotografija=fotografija;
         this.opis=opis;
         this.stanje=stanje;
+        this.najemodajalec=najemodajalec;
         this.cena = cena;
     }
 
@@ -81,5 +83,13 @@ public class Instrument {
 
     public void setOpis(String opis) {
         this.opis = opis;
+    }
+
+    public String getNajemodajalec() {
+        return najemodajalec;
+    }
+
+    public void setNajemodajalec(String najemodajalec) {
+        this.najemodajalec = najemodajalec;
     }
 }

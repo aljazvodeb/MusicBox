@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.feri.um.si.musicbox.modeli.Instrument;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -32,7 +34,7 @@ public class DodajActivity extends AppCompatActivity {
     EditText ime, opis, url, cena;
     Spinner mesto, kategorija, stanje;
     public static final String Firebase_Server_URL = "https://insertdata-android-examples.firebaseio.com/";
-    String imeA, opisA, urlA, mestoA, kategorijaA, stanjeA;
+    String imeA, opisA, urlA, mestoA, kategorijaA, stanjeA, najemodajalecA;
     int cenaA;
 
     private FirebaseFirestore mFirestore;
@@ -73,6 +75,8 @@ public class DodajActivity extends AppCompatActivity {
                 instrument.setStanje(stanjeA);
                 cenaA= Integer.parseInt(cena.getText().toString());
                 instrument.setCena(cenaA);
+                instrument.setNajemodajalec(getFirebaseUser().getDisplayName());
+                najemodajalecA = instrument.getNajemodajalec();
 
                 Map<String, Object> instrumentiMap = new HashMap<>();
                 instrumentiMap.put("ime", imeA);
@@ -82,6 +86,8 @@ public class DodajActivity extends AppCompatActivity {
                 instrumentiMap.put("kategorija", kategorijaA);
                 instrumentiMap.put("stanje", stanjeA);
                 instrumentiMap.put("cena", cenaA);
+                instrumentiMap.put("najemodajalec", najemodajalecA);
+
 
                 if (cena.getText().toString().isEmpty() || ime.getText().toString().isEmpty() || opis.getText().toString().isEmpty() || url.getText().toString().isEmpty()) {
                     Toast.makeText(DodajActivity.this, "Niste napolnili vseh polj. Dodajanje instrumenta neuspesno.", Toast.LENGTH_SHORT).show();
@@ -112,5 +118,16 @@ public class DodajActivity extends AppCompatActivity {
     @OnClick(R.id.floatingActionButton)
     public void onBackArrowClicked(View view){
         onBackPressed();
+    }
+
+
+    public static FirebaseUser getFirebaseUser()
+    {
+        return getFirebaseAuth().getCurrentUser();
+    }
+
+    public static FirebaseAuth getFirebaseAuth()
+    {
+        return FirebaseAuth.getInstance();
     }
 }

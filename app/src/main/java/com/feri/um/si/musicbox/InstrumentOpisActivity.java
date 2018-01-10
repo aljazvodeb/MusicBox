@@ -25,7 +25,7 @@ import butterknife.OnClick;
   */
 
 public class InstrumentOpisActivity extends AppCompatActivity implements EventListener<DocumentSnapshot> {
-    
+
      private static final String TAG="InstrumentDetail";
      public static final String KEY_INSTRUMENT_ID="key_instrument_id";
      private FirebaseFirestore mFirestore;
@@ -33,19 +33,28 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
      private ListenerRegistration mInstrumentRegistration;
 
      @BindView(R.id.instrument_slika)
-    ImageView mImageView;
+    ImageView mSlikaView;
 
      @BindView(R.id.instrument_ime)
         TextView mNameView;
 
      @BindView(R.id.instrument_mesto)
-        TextView mCityView;
+     TextView mMestoView;
 
      @BindView(R.id.instrument_kategorija)
-        TextView mCategoryView;
+     TextView mKategorijaView;
 
-     @BindView(R.id.instrument_cena)
-        TextView mPriceView;
+     @BindView(R.id.cena_et)
+     TextView mCenaView;
+
+     @BindView(R.id.opis_et)
+     TextView mOpisView;
+
+     @BindView(R.id.stanje_et)
+     TextView mStanjeView;
+
+     @BindView(R.id.najemodajalec_et)
+     TextView mNajemodajalecView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -65,6 +74,7 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
          // pridobi referenco na instrument preko id
          mInstrumentRef=mFirestore.collection("Instrumenti").document(instrumentId);
          }
+
 
      @OnClick(R.id.gumb_nazaj)
      public void onBackArrowClicked(View view){
@@ -101,12 +111,14 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
      // nalozimo podatke o instrumentu
      private void onInstrumentNalozen(Instrument instrument) {
          mNameView.setText(instrument.getIme());
-         mCityView.setText(instrument.getMesto());
-         mCategoryView.setText(instrument.getKategorija());
-         mPriceView.setText(instrument.getCena()+"€/dan");
-
-         Glide.with(mImageView.getContext())
+         mMestoView.setText(instrument.getMesto());
+         mKategorijaView.setText(instrument.getKategorija());
+         mCenaView.setText(instrument.getCena()+"€/dan");
+         mOpisView.setText(instrument.getOpis());
+         mStanjeView.setText(instrument.getStanje());
+         mNajemodajalecView.setText(instrument.getNajemodajalec());
+         Glide.with(mSlikaView.getContext())
                  .load(instrument.getSlika())
-                 .into(mImageView);
+                 .into(mSlikaView);
      }
 }
