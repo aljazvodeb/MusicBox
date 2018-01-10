@@ -170,7 +170,7 @@ public class FilterDialogFragment extends DialogFragment {
             }
             if (getIzbranaCena() == 3) {
                 filtri.setMinCena(20);
-                filtri.setMaxCena(30);
+                filtri.setMaxCena(100);
             }
             if (getIzbranaCena() == -1) {
                 filtri.setMinCena(0);

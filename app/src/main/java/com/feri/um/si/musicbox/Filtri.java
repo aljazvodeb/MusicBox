@@ -120,7 +120,7 @@ public class Filtri {
         }
 
         if (maxcena > 0) {
-            desc.append(" za od ");
+            desc.append(" od ");
             desc.append("<b>");
             desc.append(mincena);
             desc.append("</b>");
