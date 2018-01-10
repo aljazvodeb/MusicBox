@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.feri.um.si.musicbox.R;
 import com.feri.um.si.musicbox.modeli.Instrument;
-import com.google.firebase.example.musicbox.R;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 

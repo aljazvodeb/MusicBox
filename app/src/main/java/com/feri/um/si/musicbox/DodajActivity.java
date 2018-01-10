@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.feri.um.si.musicbox.modeli.Instrument;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.example.musicbox.R;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -33,7 +32,8 @@ public class DodajActivity extends AppCompatActivity {
     EditText ime, opis, url, cena;
     Spinner mesto, kategorija, stanje;
     public static final String Firebase_Server_URL = "https://insertdata-android-examples.firebaseio.com/";
-    String imeA, opisA, urlA, mestoA, kategorijaA, stanjeA, cenaA;
+    String imeA, opisA, urlA, mestoA, kategorijaA, stanjeA;
+    int cenaA;
 
     private FirebaseFirestore mFirestore;
 
@@ -71,10 +71,10 @@ public class DodajActivity extends AppCompatActivity {
                 instrument.setKategorija(kategorijaA);
                 stanjeA=stanje.getSelectedItem().toString();
                 instrument.setStanje(stanjeA);
-                cenaA=cena.getText().toString();
+                cenaA= Integer.parseInt(cena.getText().toString());
                 instrument.setCena(cenaA);
 
-                Map<String, String> instrumentiMap = new HashMap<>();
+                Map<String, Object> instrumentiMap = new HashMap<>();
                 instrumentiMap.put("ime", imeA);
                 instrumentiMap.put("opis", opisA);
                 instrumentiMap.put("slika", urlA);
@@ -83,20 +83,28 @@ public class DodajActivity extends AppCompatActivity {
                 instrumentiMap.put("stanje", stanjeA);
                 instrumentiMap.put("cena", cenaA);
 
-                mFirestore.collection("Instrumenti").add(instrumentiMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(DodajActivity.this, "Instrument uspesno dodan!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        String napaka = e.getMessage();
-                        Toast.makeText(DodajActivity.this, "Napaka:"+napaka, Toast.LENGTH_SHORT).show();
-                    }
-                });
+                if (cena.getText().toString().isEmpty() || ime.getText().toString().isEmpty() || opis.getText().toString().isEmpty() || url.getText().toString().isEmpty()) {
+                    Toast.makeText(DodajActivity.this, "Niste napolnili vseh polj. Dodajanje instrumenta neuspesno.", Toast.LENGTH_SHORT).show();
+                }
+                if (Integer.parseInt(cena.getText().toString()) > 100) {
+                    Toast.makeText(DodajActivity.this, "Napaka cena je prevelika!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    mFirestore.collection("Instrumenti").add(instrumentiMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Toast.makeText(DodajActivity.this, "Instrument uspesno dodan!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            String napaka = e.getMessage();
+                            Toast.makeText(DodajActivity.this, "Napaka:" + napaka, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
     }

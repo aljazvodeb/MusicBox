@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 
 import com.feri.um.si.musicbox.modeli.Instrument;
-import com.google.firebase.example.musicbox.R;
 import com.google.firebase.firestore.Query;
 
 import butterknife.BindView;
@@ -32,16 +31,16 @@ public class FilterDialogFragment extends DialogFragment {
     private View mRootView;
 
     @BindView(R.id.spinner_kategorija)
-    Spinner mCategorySpinner;
+    Spinner mKategorijaSpinner;
 
     @BindView(R.id.spinner_mesto)
-    Spinner mCitySpinner;
+    Spinner mMestoSpinner;
 
     @BindView(R.id.spinner_sortiranje)
     Spinner mSortSpinner;
 
     @BindView(R.id.spinner_cena)
-    Spinner mPriceSpinner;
+    Spinner mCenaSpinner;
 
     private FilterListener mFilterListener;
 
@@ -89,31 +88,31 @@ public class FilterDialogFragment extends DialogFragment {
 
     @Nullable
     private String getIzbranaKategorija() {
-        String selected = (String) mCategorySpinner.getSelectedItem();
-        if (getString(R.string.vse_kategorije).equals(selected)) {
+        String izbrano = (String) mKategorijaSpinner.getSelectedItem();
+        if (getString(R.string.vse_kategorije).equals(izbrano)) {
             return null;
         } else {
-            return selected;
+            return izbrano;
         }
     }
 
     @Nullable
     private String getIzbranoMesto() {
-        String selected = (String) mCitySpinner.getSelectedItem();
-        if (getString(R.string.vsa_mesta).equals(selected)) {
+        String izbrano = (String) mMestoSpinner.getSelectedItem();
+        if (getString(R.string.vsa_mesta).equals(izbrano)) {
             return null;
         } else {
-            return selected;
+            return izbrano;
         }
     }
 
     private int getIzbranaCena() {
-        String selected = (String) mPriceSpinner.getSelectedItem();
-        if (selected.equals(getString(R.string.cena_1))) {
+        String izbrano = (String) mCenaSpinner.getSelectedItem();
+        if (izbrano.equals(getString(R.string.cena_1))) {
             return 1;
-        } else if (selected.equals(getString(R.string.cena_2))) {
+        } else if (izbrano.equals(getString(R.string.cena_2))) {
             return 2;
-        } else if (selected.equals(getString(R.string.cena_3))) {
+        } else if (izbrano.equals(getString(R.string.cena_3))) {
             return 3;
         } else {
             return -1;
@@ -122,12 +121,12 @@ public class FilterDialogFragment extends DialogFragment {
 
     @Nullable
     private String getIzbranoSortiranje() {
-        String selected = (String) mSortSpinner.getSelectedItem();
+        String izbrano = (String) mSortSpinner.getSelectedItem();
 
-        if (getString(R.string.sortiraj_po_ceni).equals(selected)) {
+        if (getString(R.string.sortiraj_po_ceni).equals(izbrano)) {
             return Instrument.OZNAKA_CENA;
         }
-        if (getString(R.string.sortiraj_po_kategoriji).equals(selected)) {
+        if (getString(R.string.sortiraj_po_kategoriji).equals(izbrano)) {
             return Instrument.OZNAKA_KATEGORIJA;
         }
         return null;
@@ -135,11 +134,11 @@ public class FilterDialogFragment extends DialogFragment {
 
     @Nullable
     private Query.Direction getSortDirection() {
-        String selected = (String) mSortSpinner.getSelectedItem();
-        if (getString(R.string.sortiraj_po_ceni).equals(selected)) {
+        String izbrano = (String) mSortSpinner.getSelectedItem();
+        if (getString(R.string.sortiraj_po_ceni).equals(izbrano)) {
             return Query.Direction.ASCENDING;
         }
-        if (getString(R.string.sortiraj_po_kategoriji).equals(selected)) {
+        if (getString(R.string.sortiraj_po_kategoriji).equals(izbrano)) {
             return Query.Direction.DESCENDING;
         }
 
@@ -148,9 +147,9 @@ public class FilterDialogFragment extends DialogFragment {
 
     public void resetFiltri() {
         if (mRootView != null) {
-            mCategorySpinner.setSelection(0);
-            mCitySpinner.setSelection(0);
-            mPriceSpinner.setSelection(0);
+            mKategorijaSpinner.setSelection(0);
+            mMestoSpinner.setSelection(0);
+            mCenaSpinner.setSelection(0);
             mSortSpinner.setSelection(0);
         }
     }
@@ -161,7 +160,22 @@ public class FilterDialogFragment extends DialogFragment {
         if (mRootView != null) {
             filtri.setKategorija(getIzbranaKategorija());
             filtri.setMesto(getIzbranoMesto());
-            filtri.setCena(getIzbranaCena());
+            if (getIzbranaCena() == 1) {
+                filtri.setMinCena(0);
+                filtri.setMaxCena(10);
+            }
+            if (getIzbranaCena() ==2) {
+                filtri.setMinCena(10);
+                filtri.setMaxCena(20);
+            }
+            if (getIzbranaCena() == 3) {
+                filtri.setMinCena(20);
+                filtri.setMaxCena(30);
+            }
+            if (getIzbranaCena() == -1) {
+                filtri.setMinCena(0);
+                filtri.setMaxCena(100);
+            }
             filtri.setSortirajPo(getIzbranoSortiranje());
         }
 

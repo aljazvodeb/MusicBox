@@ -12,12 +12,12 @@ public class Instrument {
     private String fotografija;
     private String opis;
     private String stanje;
-    private String cena;
+    private int cena;
 
     public Instrument() {}
 
     public Instrument(String ime, String mesto, String kategorija, String fotografija, String opis, String stanje,
-                      String cena) {
+                      int cena) {
         this.ime = ime;
         this.mesto = mesto;
         this.kategorija = kategorija;
@@ -67,11 +67,11 @@ public class Instrument {
         this.stanje = stanje;
     }
 
-    public String getCena() {
+    public int getCena() {
         return cena;
     }
 
-    public void setCena(String cena) {
+    public void setCena(int cena) {
         this.cena = cena;
     }
 

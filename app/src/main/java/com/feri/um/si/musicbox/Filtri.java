@@ -3,7 +3,6 @@
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.google.firebase.example.musicbox.R;
 import com.feri.um.si.musicbox.modeli.Instrument;
 import com.google.firebase.firestore.Query;
 
@@ -15,7 +14,9 @@ public class Filtri {
 
     private String kategorija = null;
     private String mesto = null;
+    private int maxcena = -1;
     private int cena = -1;
+    private int mincena = -1;
     private String sortBy = null;
     private Query.Direction sortDirection = null;
 
@@ -37,7 +38,7 @@ public class Filtri {
     }
 
     public boolean imaCeno() {
-        return (cena > 0);
+        return (maxcena > 0);
     }
 
     public boolean imaSortiranje() {
@@ -60,13 +61,22 @@ public class Filtri {
         this.mesto = mesto;
     }
 
-    public int getCena() {
-        return cena;
+    public int getMaxCena() {
+        return maxcena;
     }
 
-    public void setCena(int cena) {
-        this.cena = cena;
+    public void setMaxCena(int maxcena) {
+        this.maxcena = maxcena;
     }
+
+
+     public int getMinCena() {
+         return mincena;
+     }
+
+     public void setMinCena(int mincena) {
+         this.mincena = mincena;
+     }
 
     public String getSortirajPo() {
         return sortBy;
@@ -109,22 +119,26 @@ public class Filtri {
             desc.append("</b>");
         }
 
-        if (cena > 0) {
-            desc.append(" za ");
+        if (maxcena > 0) {
+            desc.append(" za od ");
             desc.append("<b>");
-            desc.append(cena);
-            desc.append(" eur ");
+            desc.append(mincena);
             desc.append("</b>");
+            desc.append(" do ");
+            desc.append("<b>");
+            desc.append(maxcena);
+            desc.append("</b>");
+            desc.append(" eur ");
         }
         return desc.toString();
     }
 
     public String getOpisSortiranja(Context context) {
         if (Instrument.OZNAKA_KATEGORIJA.equals(sortBy)) {
-                return context.getString(R.string.sortiraj_po_kategoriji);
+                return context.getString(R.string.sortirano_po_kategoriji);
             }
         else {
-            return context.getString(R.string.sortiraj_po_ceni);
+            return context.getString(R.string.sortirano_po_ceni);
         }
     }
 }

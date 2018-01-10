@@ -2,7 +2,7 @@ package com.feri.um.si.musicbox.modeli;
 
 public class InstrumentDodatno {
     public static String getPriceString(Instrument instrument) {
-        return getPriceString(Integer.parseInt(instrument.getCena()));
+        return getPriceString(instrument.getCena());
     }
 
     public static String getPriceString(int priceInt) {

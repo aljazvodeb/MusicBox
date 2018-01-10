@@ -20,7 +20,6 @@ import com.feri.um.si.musicbox.adapterji.InstrumentAdapter;
 import com.feri.um.si.musicbox.viewmodel.MainActivityViewModel;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.example.musicbox.R;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -174,7 +173,8 @@ public class MainActivity extends AppCompatActivity implements
             query = query.whereEqualTo("mesto", filtri.getMesto());
         }
         if (filtri.imaCeno()) {
-            query = query.whereEqualTo("cena", filtri.getCena());
+            query = query.whereGreaterThanOrEqualTo("cena", filtri.getMinCena())
+                    .whereLessThanOrEqualTo("cena", filtri.getMaxCena());
         }
         //sortiranje
         if (filtri.imaSortiranje()) {
