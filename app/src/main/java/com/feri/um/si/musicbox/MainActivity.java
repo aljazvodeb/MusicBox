@@ -218,8 +218,9 @@ public class MainActivity extends AppCompatActivity implements
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             mViewModel.setPrijavljaSe(false);
-
-            if (resultCode != RESULT_OK && shouldStartSignIn()) {
+            if (resultCode == RESULT_CANCELED)
+                finish();
+            else if (resultCode != RESULT_OK && shouldStartSignIn()) {
                 startSignIn();
             }
         }

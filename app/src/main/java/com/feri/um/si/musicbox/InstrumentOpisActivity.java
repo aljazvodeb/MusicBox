@@ -1,22 +1,30 @@
  package com.feri.um.si.musicbox;
 
+ import android.content.Intent;
  import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+ import android.support.design.widget.FloatingActionButton;
+ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
+ import android.widget.Button;
+ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.feri.um.si.musicbox.modeli.Instrument;
-import com.google.firebase.firestore.DocumentReference;
+ import com.feri.um.si.musicbox.modeli.Sporocilo;
+ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
-import butterknife.BindView;
+ import java.text.DateFormat;
+ import java.text.SimpleDateFormat;
+ import java.util.Date;
+
+ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -56,6 +64,9 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
      @BindView(R.id.najemodajalec_et)
      TextView mNajemodajalecView;
 
+     @BindView(R.id.chat)
+     FloatingActionButton mChatButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
          super.onCreate(savedInstanceState);
@@ -73,8 +84,15 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
 
          // pridobi referenco na instrument preko id
          mInstrumentRef=mFirestore.collection("Instrumenti").document(instrumentId);
-         }
-
+        //button s povezavo do chata
+        mChatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
      @OnClick(R.id.gumb_nazaj)
      public void onBackArrowClicked(View view){

@@ -38,6 +38,7 @@
     <string name="vrsta_glasbila">Vrsta glasbila</string>
     <string name="podajte_kratek_opis">Podajte kratek opis</string>
     <string name="ime_glasbila1">Ime glasbila</string>
+    <string name="poslji_sporocilo">Poslji</string>
     <!-- seznam glasbil -->
     <string-array name="kategorije">
         <item>@string/vse_kategorije</item>
