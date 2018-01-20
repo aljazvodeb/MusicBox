@@ -162,7 +162,7 @@
     <EditText
         android:id="@+id/opis_et"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView5"
         android:layout_alignBottom="@+id/textView5"
         android:layout_centerHorizontal="true"

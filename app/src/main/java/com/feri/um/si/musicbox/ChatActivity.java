@@ -33,14 +33,12 @@ import com.google.firebase.storage.UploadTask;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
-
 
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
     private static final int RC_PHOTO_PICKER =  2;
@@ -128,14 +126,6 @@ public class ChatActivity extends AppCompatActivity {
         });
         mSporociloEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(DEFAULT_MSG_LENGTH_LIMIT)});
 
-        // Send button sends a message and clears the EditText
-        mPosljiButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Clear input box
-                mSporociloEditText.setText("");
-            }
-        });
         // Send button sends a message and clears the EditText
         mPosljiButton.setOnClickListener(new View.OnClickListener() {
             @Override

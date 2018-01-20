@@ -1,174 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dodajform"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:padding="16dp">
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="130px"
-            android:layout_height="130px"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:backgroundTint="@color/fui_linkColor"
-            app:elevation="2dp"
-            app:srcCompat="@drawable/ic_close_white_24px" />
-   </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-    <RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/ime_et"
-            android:layout_width="400dp"
-            android:layout_height="60dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:contentDescription="@string/ime_glasbila1"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:focusable="true"
+                app:backgroundTint="@color/fui_linkColor"
+                app:srcCompat="@drawable/ic_close_white_24px"
+                android:layout_alignParentEnd="true" />
 
-        <TextView
-            android:id="@+id/ime_tx"
-            android:layout_width="351dp"
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/ime_tx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Naziv" />
+
+            <EditText
+                android:id="@+id/ime_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/ime_glasbila1"
+                android:ems="10"
+                android:layout_below="@+id/ime_tx"
+                android:inputType="textPersonName" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/kategorija_tx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/vrsta_glasbila" />
+
+            <Spinner
+                android:id="@+id/kategorija_sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/kategorija_tx"
+                android:entries="@array/kategorije"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/mesto_tx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mesto" />
+
+            <Spinner
+                android:id="@+id/mesto_sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_below="@+id/mesto_tx"
+                android:entries="@array/mesta" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/opis_tx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Podajte opis" />
+
+            <EditText
+                android:id="@+id/opis_et"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:gravity="top"
+                android:layout_below="@+id/opis_tx"
+                android:ems="10"
+                android:inputType="textMultiLine" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/fotografija_tx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/url_fotografije" />
+
+            <EditText
+                android:id="@+id/url_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fotografija_tx"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/uporabnik_tx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cena_dan" />
+
+            <EditText
+                android:id="@+id/cena_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/uporabnik_tx"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/stanje_tx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/stanje" />
+
+            <Spinner
+                android:id="@+id/stanje_sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/stanje"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_below="@+id/stanje_tx" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/dodaj"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="@string/ime_glasbila" />
+            android:text="@string/dodaj" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/opis_tx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/podajte_kratek_opis" />
-
-        <EditText
-            android:id="@+id/opis_et"
-            android:layout_width="400dp"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/mesto_tx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/mesto" />
-
-        <Spinner
-            android:id="@+id/mesto_sp"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="27dp"
-            android:entries="@array/mesta" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/kategorija_tx"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vrsta_glasbila" />
-
-        <Spinner
-            android:id="@+id/kategorija_sp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/kategorija_tx"
-            android:entries="@array/kategorije" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/fotografija_tx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/url_fotografije" />
-
-        <EditText
-            android:id="@+id/url_et"
-            android:layout_width="400dp"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:ems="10"
-            android:inputType="textPersonName" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/uporabnik_tx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cena_dan" />
-
-        <EditText
-            android:id="@+id/cena_et"
-            android:layout_width="400dp"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:ems="10"
-            android:inputType="textPersonName" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/stanje_tx"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="@string/stanje" />
-
-    </RelativeLayout>
-
-    <Spinner
-        android:id="@+id/stanje_sp"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:entries="@array/stanje" />
-
-    <Button
-        android:id="@+id/dodaj"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:text="@string/dodaj" />
-
-</LinearLayout>
+</ScrollView>
