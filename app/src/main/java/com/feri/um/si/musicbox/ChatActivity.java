@@ -1,5 +1,7 @@
 package com.feri.um.si.musicbox;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -17,6 +19,7 @@ import android.widget.ProgressBar;
 
 import com.feri.um.si.musicbox.adapterji.SporociloAdapter;
 import com.feri.um.si.musicbox.modeli.Sporocilo;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -24,6 +27,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -37,6 +43,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
+    private static final int RC_PHOTO_PICKER =  2;
 
     private ListView mSporociloListView;
     private SporociloAdapter mSporociloAdapter;
@@ -46,10 +53,14 @@ public class ChatActivity extends AppCompatActivity {
     private Button mPosljiButton;
 
     private String mUporabnik;
+    private DateFormat dateFormat;
+    private Date date;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mSporociloDatabaseReference;
     private ChildEventListener mChildEventListener;
+    private FirebaseStorage mFirebaseStorage;
+    private StorageReference mChatSlikeStorageReference;
 
 
     @Override
@@ -57,11 +68,18 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mSporociloDatabaseReference = mFirebaseDatabase.getReference().child("sporocila");
+        dateFormat = new SimpleDateFormat("HH:mm,  dd.MM.yyyy");
+        date = new Date();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         mUporabnik = user.getDisplayName();
+
+        // Initialize Firebase components
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mFirebaseStorage = FirebaseStorage.getInstance();
+
+        mSporociloDatabaseReference = mFirebaseDatabase.getReference().child("sporocila");
+        mChatSlikeStorageReference = mFirebaseStorage.getReference().child("chat_slike");
 
         // Initialize references to views
         mProgressBar = findViewById(R.id.progressBar);
@@ -82,7 +100,10 @@ public class ChatActivity extends AppCompatActivity {
         mPhotoPickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Fire an intent to show an image picker
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/jpeg");
+                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
             }
         });
 
@@ -119,8 +140,7 @@ public class ChatActivity extends AppCompatActivity {
         mPosljiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DateFormat dateFormat = new SimpleDateFormat("HH:mm,  dd.MM.yyyy");
-                Date date = new Date();
+
                 Sporocilo sporocilo = new Sporocilo(mSporociloEditText.getText().toString(), mUporabnik, null, dateFormat.format(date));
                 mSporociloDatabaseReference.push().setValue(sporocilo);
                 // Clear input box
@@ -148,6 +168,28 @@ public class ChatActivity extends AppCompatActivity {
             }
         };
         mSporociloDatabaseReference.addChildEventListener(mChildEventListener);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK){
+            Uri selectedImageUri = data.getData();
+
+            // Get reference to store file at chat_slike/<FILENAME>
+            StorageReference photoRef = mChatSlikeStorageReference.child(selectedImageUri.getLastPathSegment());
+
+            // Upload file to Firebase Storage
+            photoRef.putFile(selectedImageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                    Sporocilo sporocilo = new Sporocilo(null, mUporabnik, downloadUrl.toString(), dateFormat.format(date));
+                    mSporociloDatabaseReference.push().setValue(sporocilo);
+                }
+            });
+
+        }
     }
 
     @Override
