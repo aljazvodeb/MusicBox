@@ -150,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/uporabnik_tx"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:inputType="number" />
 
         </RelativeLayout>
 
