@@ -115,11 +115,6 @@ public class DodajActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick(R.id.floatingActionButton)
-    public void onBackArrowClicked(View view){
-        onBackPressed();
-    }
-
 
     public static FirebaseUser getFirebaseUser()
     {
