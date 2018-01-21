@@ -120,7 +120,6 @@ public class NajemActivity extends AppCompatActivity {
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel();
             }
-
         };
 
         izberidatum1.setOnClickListener(new View.OnClickListener() {
