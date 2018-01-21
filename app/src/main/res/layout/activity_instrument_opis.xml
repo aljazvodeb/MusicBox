@@ -240,7 +240,8 @@
             app:backgroundTint="@android:color/holo_green_dark"
             app:srcCompat="@drawable/ic_add_shopping_cart_black_24dp"
             app:layout_anchor="@id/vrhnji_del"
-            app:layout_anchorGravity="bottom|right|end" />
+            app:layout_anchorGravity="bottom|right|end"
+            />
 
     </android.support.design.widget.CoordinatorLayout>
 </ScrollView>

@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".InstrumentOpisActivity" />
         <activity android:name=".DodajActivity" />
+        <activity android:name=".NajemActivity"></activity>
         <activity android:name=".ChatActivity"></activity>
     </application>
 
