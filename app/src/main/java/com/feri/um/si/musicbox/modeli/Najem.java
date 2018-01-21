@@ -8,13 +8,13 @@ public class Najem {
     private String datumOd;
     private String datumDo;
     private int cenaDan;
-    private int cenaSkupaj;
+    private String cenaSkupaj;
     private String najemnik;
     private String najemodajalec;
 
     public Najem() {}
 
-    public Najem (String datumOd, String datumDo, int cenaDan, int cenaSkupaj, String najemnik, String najemodajalec) {
+    public Najem (String datumOd, String datumDo, int cenaDan, String cenaSkupaj, String najemnik, String najemodajalec) {
         this.datumOd = datumOd;
         this.datumDo = datumDo;
         this.cenaDan = cenaDan;
@@ -47,11 +47,11 @@ public class Najem {
         this.cenaDan = cenaDan;
     }
 
-    public int getCenaSkupaj() {
+    public String getCenaSkupaj() {
         return cenaSkupaj;
     }
 
-    public void setCenaSkupaj(int cenaSkupaj) {
+    public void setCenaSkupaj(String cenaSkupaj) {
         this.cenaSkupaj = cenaSkupaj;
     }
 

@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by simon on 5. 01. 2018.

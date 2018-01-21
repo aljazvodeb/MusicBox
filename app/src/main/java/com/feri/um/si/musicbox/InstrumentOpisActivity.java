@@ -147,6 +147,7 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
                      Bundle extras = new Bundle();
                      extras.putString("najemodajalec",instrument.getNajemodajalec());
                      extras.putInt("cenadan",instrument.getCena());
+                     extras.putString("naziv",instrument.getIme());
                      intent.putExtras(extras);
                      startActivity(intent);
                  }
