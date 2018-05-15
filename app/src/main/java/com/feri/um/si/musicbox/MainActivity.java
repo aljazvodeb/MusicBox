@@ -205,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.menu_dodaj:
                 onDodajInstrument();
                 break;
+           
             case R.id.menu_odjava:
                 AuthUI.getInstance().signOut(this);
                 startSignIn();
@@ -225,6 +226,7 @@ public class MainActivity extends AppCompatActivity implements
             }
         }
     }
+
 
     @OnClick(R.id.filter_vrstica)
     public void onFilterClicked() {
