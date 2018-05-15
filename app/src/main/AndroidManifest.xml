@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PrijavaActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +21,9 @@
         <activity android:name=".DodajActivity" />
         <activity android:name=".NajemActivity" />
         <activity android:name=".ChatActivity" />
-        <activity android:name=".RegistracijaActivity"></activity>
+        <activity android:name=".RegistracijaActivity" />
+        <activity android:name=".ProfilActivity" />
+        <activity android:name=".PregledActivity"></activity>
     </application>
 
 </manifest>

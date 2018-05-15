@@ -4,149 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0E0E0"
-    tools:context="com.feri.um.si.musicbox.MainActivity">
+    android:background="@color/colorPrimary"
+    tools:context="com.feri.um.si.musicbox.MainActivity"
+    tools:layout_editor_absoluteY="25dp">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/vrstica"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/AppTheme"
-        app:logo="@drawable/ic_logo"
-        app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
-        app:title="@string/app_name"
-        app:titleMarginStart="24dp"
-        app:titleTextColor="@android:color/white" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_above="@+id/editTextEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        app:srcCompat="@mipmap/ic_launcher" />
 
-    <FrameLayout
-        android:id="@+id/filter_vrstica_vsebnik"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/vrstica"
-        android:background="?attr/colorPrimary"
-        android:paddingBottom="12dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp">
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@color/cardview_light_background"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textSize="16dp" />
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/filter_vrstica"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:elevation="8dp"
-            android:foreground="?attr/selectableItemBackground">
+    <EditText
+        android:id="@+id/editTextGeslo"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/editTextEmail"
+        android:layout_alignStart="@+id/editTextEmail"
+        android:layout_below="@+id/editTextEmail"
+        android:layout_marginTop="24dp"
+        android:background="@color/cardview_light_background"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:hint="Geslo"
+        android:inputType="textPassword" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+    <Button
+        android:id="@+id/buttonPrijava"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/editTextGeslo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="82dp"
+        android:text="Prijava" />
 
-                <ImageView
-                    android:id="@+id/gumb_filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:padding="8dp"
-                    android:tint="@color/greySecondary"
-                    app:srcCompat="@drawable/ic_filter_list_white_24px" />
-
-                <LinearLayout
-                    android:id="@+id/iskanje_vsebnik"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="8dp"
-                    android:layout_toRightOf="@+id/gumb_filter"
-                    android:orientation="vertical"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp">
-
-                    <TextView
-                        android:id="@+id/iskanje"
-                        style="@style/AppTheme.Body1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/vsi_instrumenti"
-                        android:textColor="@color/greySecondary"
-                        tools:text="Filtri" />
-
-                    <TextView
-                        android:id="@+id/sortiraj_po"
-                        style="@style/AppTheme.Caption"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/greyDisabled" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/gumb_brisi_filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="8dp"
-                    android:tint="@color/greySecondary"
-                    app:srcCompat="@drawable/ic_close_white_24px" />
-
-            </RelativeLayout>
-
-        </android.support.v7.widget.CardView>
-
-    </FrameLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_instrumenti"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/filter_vrstica_vsebnik"
-        android:background="@android:color/white"
-        tools:listitem="@layout/vrstica"
-        />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:layout_below="@+id/filter_vrstica_vsebnik"/>
-
-    <LinearLayout
-        android:id="@+id/prazno"
+    <TextView
+        android:id="@+id/textViewRegistriranje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/vrstica"
+        android:layout_below="@+id/buttonPrijava"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone"
-        tools:visibility="gone">
-
-        <ImageView
-            style="@style/AppTheme.sad"
-            android:src="@drawable/sad" />
-
-        <TextView
-            style="@style/AppTheme.Body1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/sporocilo_ni_rezultatov"
-            android:textColor="@color/greyDisabled" />
-
-    </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/nalaganje"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/recycler_instrumenti"
-        android:layout_alignTop="@+id/recycler_instrumenti"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone" />
+        android:layout_marginTop="27dp"
+        android:text="Registriraj se tukaj."
+        android:textColor="@color/cardview_light_background" />
 
 </RelativeLayout>
