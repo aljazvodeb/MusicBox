@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.menu_dodaj:
                 onDodajInstrument();
                 break;
-           
+
             case R.id.menu_odjava:
                 AuthUI.getInstance().signOut(this);
                 startSignIn();
