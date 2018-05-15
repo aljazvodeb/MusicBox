@@ -165,6 +165,11 @@ public class PregledActivity extends AppCompatActivity implements
         Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
         startActivity(intent);
     }
+    private void odjava(){
+        FirebaseAuth.getInstance().signOut();
+        finish();
+        startActivity(new Intent(this, MainActivity.class));
+    }
 
     @Override
     public void onFilter(Filtri filtri) {
@@ -217,8 +222,7 @@ public class PregledActivity extends AppCompatActivity implements
 
 
             case R.id.menu_odjava:
-                AuthUI.getInstance().signOut(this);
-                startSignIn();
+                odjava();
                 break;
         }
         return super.onOptionsItemSelected(item);

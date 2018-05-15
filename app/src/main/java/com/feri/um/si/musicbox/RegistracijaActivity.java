@@ -71,9 +71,8 @@ public class RegistracijaActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Intent intent = new Intent(RegistracijaActivity.this, ProfilActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+                    finish();
+                    startActivity(new Intent(RegistracijaActivity.this,ProfilActivity.class));
                 }else{
                     if(task.getException() instanceof FirebaseAuthUserCollisionException){
                         Toast.makeText(getApplicationContext(),"Ste že registrirani.", Toast.LENGTH_SHORT).show();
@@ -96,6 +95,7 @@ public class RegistracijaActivity extends AppCompatActivity implements View.OnCl
 
 
             case R.id.textViewPrijavljanje:
+                finish();
                 startActivity(new Intent(this,MainActivity.class));
 
                 break;

@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
+                        finish();
                         Intent intent = new Intent(MainActivity.this, ProfilActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
@@ -77,10 +78,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             });
 
     }
+
+    protected void onStart()
+    {
+        super.onStart();
+
+        if(mAuth.getCurrentUser() != null){
+            finish();
+            startActivity(new Intent(this,ProfilActivity.class));
+        }
+
+
+
+    }
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.textViewRegistriranje:
+                finish();
             startActivity(new Intent(this,RegistracijaActivity.class));
 
             break;
