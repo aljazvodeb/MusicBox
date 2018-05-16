@@ -19,10 +19,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.feri.um.si.musicbox.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileActivity extends AppCompatActivity{
 
     private FragmentManager fragmentManager;
+
+
 
     private Fragment fragment = null;
 
@@ -38,6 +41,9 @@ public class ProfileActivity extends AppCompatActivity{
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+
+
 
         fragmentManager = getSupportFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -57,10 +63,7 @@ public class ProfileActivity extends AppCompatActivity{
                 } else if (id == R.id.nav_chat) {
 
 
-                }else if (id == R.id.action_edit_profile) {
-
-
-                }  else if (id == R.id.nav_logout) {
+                } else if (id == R.id.nav_logout) {
 
                 }
 
@@ -101,9 +104,10 @@ public class ProfileActivity extends AppCompatActivity{
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_edit_profile) {
+        if (id == R.id.action_settings) {
             return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }
