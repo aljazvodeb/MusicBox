@@ -18,14 +18,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.feri.um.si.musicbox.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ProfileActivity extends AppCompatActivity{
+
+
+
+public class ProfileActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager;
 
-
+    private FirebaseAuth mAuth;
 
     private Fragment fragment = null;
 
@@ -61,10 +63,10 @@ public class ProfileActivity extends AppCompatActivity{
                 if (id == R.id.nav_profile) {
                     fragment = new ProfileFragment();
                 } else if (id == R.id.nav_chat) {
-
+                    fragment = new ChatFragment();
 
                 } else if (id == R.id.nav_logout) {
-
+                    signOut();
                 }
 
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -79,6 +81,11 @@ public class ProfileActivity extends AppCompatActivity{
         });
     }
 
+    private void signOut(){
+        Intent signOutIntent = new Intent(this, LoginActivity.class);
+        startActivity(signOutIntent);
+        finish();
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -120,4 +127,6 @@ public class ProfileActivity extends AppCompatActivity{
             }
         }
     }
+
+
 }
