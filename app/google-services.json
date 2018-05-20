@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1074664864253:android:c1f0f09aa42eba16",
+        "mobilesdk_app_id": "1:1074664864253:android:bef0da04fdb47564",
         "android_client_info": {
-          "package_name": "com.google.firebase.example.fireeats"
+          "package_name": "com.feri.um.si.musicbox"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1074664864253-5ouqtp9fkqhlprs6g9q15ca9uprhs2rk.apps.googleusercontent.com",
+          "client_id": "1074664864253-pmi3ionr3ajibgdger81cjctuhmn98l5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.google.firebase.example.fireeats",
-            "certificate_hash": "72c4e7f41c3d5b0956c7ac7fb01590c75a3f930a"
+            "package_name": "com.feri.um.si.musicbox",
+            "certificate_hash": "eb372835c7c352816360230b2e4fd7ea2d2b55c9"
           }
         },
         {
@@ -44,37 +44,6 @@
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1074664864253:android:bef0da04fdb47564",
-        "android_client_info": {
-          "package_name": "com.feri.um.si.musicbox"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1074664864253-cl8g88o6ebuj2ih1viliqbugv54etk7u.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAmuTaPI8QQAHcaVoCef5N5sS8ZGT5Bgnc"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

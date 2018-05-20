@@ -44,6 +44,7 @@
     <string name="cena_dan">Cena/dan</string>
     <string name="cena_skupaj">Cena skupaj</string>
     <string name="potrdi">Potrdi</string>
+    <string name="posodobi" />
     <!-- seznam glasbil -->
     <string-array name="kategorije">
         <item>@string/vse_kategorije</item>

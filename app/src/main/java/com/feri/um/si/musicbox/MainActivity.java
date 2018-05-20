@@ -157,11 +157,6 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void onDodajInstrument() {
-        Intent intent = new Intent(getApplicationContext(), DodajActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     public void onFilter(Filtri filtri) {
     // konstruiramo poizvedbo za filtriranje
@@ -203,11 +198,16 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_dodaj:
-                onDodajInstrument();
+                Intent dodaj = new Intent(getApplicationContext(), DodajActivity.class);
+                startActivity(dodaj);
                 break;
             case R.id.menu_odjava:
                 AuthUI.getInstance().signOut(this);
                 startSignIn();
+                break;
+            case R.id.menu_profil:
+                Intent profil = new Intent(getApplicationContext(), ProfilActivity.class);
+                startActivity(profil);
                 break;
         }
         return super.onOptionsItemSelected(item);

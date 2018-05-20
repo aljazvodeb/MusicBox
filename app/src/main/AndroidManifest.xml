@@ -21,6 +21,7 @@
         <activity android:name=".DodajActivity" />
         <activity android:name=".NajemActivity"></activity>
         <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ProfilActivity"></activity>
     </application>
 
 </manifest>
