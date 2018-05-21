@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/napis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ali res želite deaktivirati vaš račun?"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="191dp" />
+
+    <Button
+        android:id="@+id/da"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Da"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="233dp" />
+
+    <Button
+        android:id="@+id/preklici"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prekliči"
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="233dp" />
+</android.support.constraint.ConstraintLayout>
