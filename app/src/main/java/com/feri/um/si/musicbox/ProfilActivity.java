@@ -1,8 +1,11 @@
 package com.feri.um.si.musicbox;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -27,6 +30,7 @@ public class ProfilActivity extends FragmentActivity {
     Button gumb1;
     Button gumb2;
     Button gumb3;
+    Button gumb4;
     String emailA;
 
     public static final String Firebase_Server_URL = "https://insertdata-android-examples.firebaseio.com/";
@@ -40,7 +44,9 @@ public class ProfilActivity extends FragmentActivity {
 
         ime = (TextView) findViewById(R.id.ime_tx);
         gumb1 = (Button) findViewById(R.id.posodobi);
+        gumb2 = (Button) findViewById(R.id.sprgeslo);
         gumb3 = (Button) findViewById(R.id.nazaj);
+        gumb4 = (Button) findViewById(R.id.deaktiviraj);
 
         final Context context = this;
         mFirestore = FirebaseFirestore.getInstance();
@@ -50,7 +56,7 @@ public class ProfilActivity extends FragmentActivity {
             public void onClick(View arg0) {
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.dialog_spremeniemail);
-                dialog.setTitle("Spremeni geslo");
+                dialog.setTitle("Spremeni email");
 
                 final EditText email = (EditText) dialog.findViewById(R.id.email);
                 email.setText(getFirebaseUser().getEmail());
@@ -72,6 +78,36 @@ public class ProfilActivity extends FragmentActivity {
             }
         });
 
+        gumb2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog_spremenigeslo);
+                dialog.setTitle("Spremeni geslo");
+
+                final EditText novo = (EditText) dialog.findViewById(R.id.novo_et);
+
+                Button potrdi = (Button) dialog.findViewById(R.id.potrdi);
+                potrdi.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (novo.getText().toString().isEmpty()) {
+                            Toast.makeText(ProfilActivity.this, "Niste vnesli gesla!",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            getFirebaseUser().updatePassword(novo.getText().toString());
+                            Toast.makeText(ProfilActivity.this, "Uspesno posodobljeno!",
+                                    Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+
+
         gumb3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +115,35 @@ public class ProfilActivity extends FragmentActivity {
                 startActivity(intent);
             }
         });
+
+        gumb4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
+                } else {
+                    builder = new AlertDialog.Builder(context);
+                }
+                builder.setTitle("Brisanje računa")
+                        .setMessage("Ali res želite zbrisati svoj račun?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                getFirebaseUser().delete();
+                                Toast.makeText(ProfilActivity.this, "Uspešno ste zbrisali svoj račun!",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
+        });
+
     }
 
     public static FirebaseUser getFirebaseUser()
