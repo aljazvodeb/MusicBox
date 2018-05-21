@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
 
 public class DodajActivity extends AppCompatActivity {
 
-    Button dodaj;
+    Button dodaj, preklici;
     EditText ime, opis, url, cena;
     Spinner mesto, kategorija, stanje;
     public static final String Firebase_Server_URL = "https://insertdata-android-examples.firebaseio.com/";
@@ -45,6 +45,7 @@ public class DodajActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         dodaj = (Button) findViewById(R.id.dodaj);
+        preklici = (Button) findViewById(R.id.pojdinazaj);
         ime = (EditText) findViewById(R.id.ime_et);
         opis = (EditText) findViewById(R.id.opis_et);
         url = (EditText) findViewById(R.id.url_et);
@@ -56,6 +57,13 @@ public class DodajActivity extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
 
         final Instrument instrument = new Instrument();
+        preklici.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DodajActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         dodaj.setOnClickListener(new View.OnClickListener() {
             @Override

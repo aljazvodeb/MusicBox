@@ -20,7 +20,7 @@
         android:id="@+id/menu_kosarica"
         android:enabled="true"
         android:icon="@android:drawable/checkbox_on_background"
-        android:title="@string/kosarica"
+        android:title="@string/zgodovina"
         android:visible="true" />
 
     <item
