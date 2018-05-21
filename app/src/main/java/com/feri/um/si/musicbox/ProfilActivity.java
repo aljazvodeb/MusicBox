@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +31,6 @@ public class ProfilActivity extends FragmentActivity {
 
     public static final String Firebase_Server_URL = "https://insertdata-android-examples.firebaseio.com/";
     private FirebaseFirestore mFirestore;
-    FragmentManager fm = getSupportFragmentManager();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
