@@ -19,9 +19,9 @@
         </activity>
         <activity android:name=".InstrumentOpisActivity" />
         <activity android:name=".DodajActivity" />
-        <activity android:name=".NajemActivity"></activity>
-        <activity android:name=".ChatActivity"></activity>
-        <activity android:name=".ProfilActivity"></activity>
+        <activity android:name=".NajemActivity" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".ProfilActivity" />
     </application>
 
 </manifest>

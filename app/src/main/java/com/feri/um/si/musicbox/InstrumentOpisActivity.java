@@ -33,6 +33,7 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
      private FirebaseFirestore mFirestore;
      private DocumentReference mInstrumentRef;
      private ListenerRegistration mInstrumentRegistration;
+     private Instrument instrument;
 
      @BindView(R.id.instrument_slika)
      ImageView mSlikaView;
@@ -81,14 +82,6 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
 
          // pridobi referenco na instrument preko id
          mInstrumentRef = mFirestore.collection("Instrumenti").document(instrumentId);
-         //button s povezavo do chata
-         mChatButton.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-                 startActivity(intent);
-             }
-         });
      }
 
      @OnClick(R.id.gumb_nazaj)
@@ -123,6 +116,8 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
          }
          onInstrumentNalozen(snapshot.toObject(Instrument.class));
          onNajem(snapshot.toObject(Instrument.class));
+         onChat(snapshot.toObject(Instrument.class));
+
      }
 
      // nalozimo podatke o instrumentu
@@ -153,4 +148,17 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
                  }
              });
          }
+
+     private void onChat(final Instrument instrument) {
+         mChatButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+                 intent.putExtra("najemodajalec", instrument.getNajemodajalec());
+                 intent.putExtra("glasbilo", instrument.getIme());
+
+                 startActivity(intent);
+             }
+         });
+     }
  }

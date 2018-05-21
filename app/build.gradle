@@ -32,7 +32,6 @@ dependencies {
     compile 'com.google.firebase:firebase-core:11.8.0'
     compile 'com.android.support:appcompat-v7:26.1.0'
 
-
     // FirebaseUI - za avtentikacijo
     compile 'com.firebaseui:firebase-ui-auth:2.3.0'
 

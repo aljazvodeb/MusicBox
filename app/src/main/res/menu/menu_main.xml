@@ -17,6 +17,13 @@
         android:visible="true" />
 
     <item
+        android:id="@+id/menu_pogovori"
+        android:enabled="true"
+        android:icon="@android:drawable/checkbox_on_background"
+        android:title="@string/pogovori"
+        android:visible="true" />
+
+    <item
         android:id="@+id/menu_kosarica"
         android:enabled="true"
         android:icon="@android:drawable/checkbox_on_background"

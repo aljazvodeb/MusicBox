@@ -7,9 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,12 +47,15 @@ public class ChatActivity extends AppCompatActivity {
     private EditText mSporociloEditText;
     private Button mPosljiButton;
 
-    private String mUporabnik;
+    private String mNajemnik;
+    private String mNajemodajalec;
+    private String mGlasbilo;
     private DateFormat dateFormat;
     private Date date;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mSporociloDatabaseReference;
+    private DatabaseReference mSporociloDatabaseReference2;
     private ChildEventListener mChildEventListener;
     private FirebaseStorage mFirebaseStorage;
     private StorageReference mChatSlikeStorageReference;
@@ -70,13 +70,19 @@ public class ChatActivity extends AppCompatActivity {
         date = new Date();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        mUporabnik = user.getDisplayName();
+        mNajemnik = user.getDisplayName().replace(" ", "");
+        mNajemodajalec = getIntent().getStringExtra("najemodajalec").replace(" ", "");
+        mGlasbilo = getIntent().getStringExtra("glasbilo").replace(" ", "");
+
 
         // Initialize Firebase components
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseStorage = FirebaseStorage.getInstance();
 
-        mSporociloDatabaseReference = mFirebaseDatabase.getReference().child("sporocila");
+        mSporociloDatabaseReference = mFirebaseDatabase.getReference().child("sporocila").child(mNajemnik).child(mGlasbilo).child(mNajemodajalec);
+
+        mSporociloDatabaseReference2 = mFirebaseDatabase.getReference().child("sporocila").child(mNajemodajalec).child(mGlasbilo).child(mNajemnik);
+
         mChatSlikeStorageReference = mFirebaseStorage.getReference().child("chat_slike");
 
         // Initialize references to views
@@ -89,6 +95,7 @@ public class ChatActivity extends AppCompatActivity {
         // Initialize message ListView and its adapter
         List<Sporocilo> friendlyMessages = new ArrayList<>();
         mSporociloAdapter = new SporociloAdapter(this, R.layout.item_sporocilo, friendlyMessages);
+
         mSporociloListView.setAdapter(mSporociloAdapter);
 
         // Initialize progress bar
@@ -131,8 +138,11 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Sporocilo sporocilo = new Sporocilo(mSporociloEditText.getText().toString(), mUporabnik, null, dateFormat.format(date));
+                Sporocilo sporocilo = new Sporocilo(mSporociloEditText.getText().toString(), mNajemnik, null, dateFormat.format(date));
                 mSporociloDatabaseReference.push().setValue(sporocilo);
+
+                mSporociloDatabaseReference2.push().setValue(sporocilo);
+
                 // Clear input box
                 mSporociloEditText.setText("");
             }
@@ -158,6 +168,8 @@ public class ChatActivity extends AppCompatActivity {
             }
         };
         mSporociloDatabaseReference.addChildEventListener(mChildEventListener);
+        //mSporociloDatabaseReference2.addChildEventListener(mChildEventListener);
+
     }
 
     @Override
@@ -174,24 +186,16 @@ public class ChatActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                    Sporocilo sporocilo = new Sporocilo(null, mUporabnik, downloadUrl.toString(), dateFormat.format(date));
+                    Sporocilo sporocilo = new Sporocilo(null, mNajemnik, downloadUrl.toString(), dateFormat.format(date));
                     mSporociloDatabaseReference.push().setValue(sporocilo);
+
+                    mSporociloDatabaseReference2.push().setValue(sporocilo);
+
                 }
             });
 
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
 }
 
