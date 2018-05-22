@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.support.v7.widget.Toolbar;
 
 import com.feri.um.si.musicbox.adapterji.SporociloAdapter;
 import com.feri.um.si.musicbox.modeli.Sporocilo;
@@ -31,33 +32,23 @@ import com.google.firebase.storage.UploadTask;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
     private static final int RC_PHOTO_PICKER =  2;
 
-    private ListView mSporociloListView;
     private SporociloAdapter mSporociloAdapter;
-    private ProgressBar mProgressBar;
-    private ImageButton mPhotoPickerButton;
     private EditText mSporociloEditText;
     private Button mPosljiButton;
 
     private String mNajemnik;
-    private String mNajemodajalec;
-    private String mGlasbilo;
     private DateFormat dateFormat;
     private Date date;
 
-    private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mSporociloDatabaseReference;
     private DatabaseReference mSporociloDatabaseReference2;
-    private ChildEventListener mChildEventListener;
-    private FirebaseStorage mFirebaseStorage;
     private StorageReference mChatSlikeStorageReference;
 
 
@@ -71,29 +62,32 @@ public class ChatActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         mNajemnik = user.getDisplayName();
-        mNajemodajalec = getIntent().getStringExtra("najemodajalec");
+        String mNajemodajalec = getIntent().getStringExtra("najemodajalec");
+        String mGlasbilo = getIntent().getStringExtra("glasbilo");
 
 
         // Initialize Firebase components
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mFirebaseStorage = FirebaseStorage.getInstance();
+        FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseStorage mFirebaseStorage = FirebaseStorage.getInstance();
 
-        mSporociloDatabaseReference = mFirebaseDatabase.getReference().child("sporocila").child(mNajemnik).child(mNajemodajalec);
-
-        mSporociloDatabaseReference2 = mFirebaseDatabase.getReference().child("sporocila").child(mNajemodajalec).child(mNajemnik);
-
+        mSporociloDatabaseReference = mFirebaseDatabase.getReference().child("sporocila").child(mNajemnik).child(mNajemodajalec).child(mGlasbilo);
+        mSporociloDatabaseReference2 = mFirebaseDatabase.getReference().child("sporocila").child(mNajemodajalec).child(mNajemnik).child(mGlasbilo);
         mChatSlikeStorageReference = mFirebaseStorage.getReference().child("chat_slike");
 
         // Initialize references to views
-        mProgressBar = findViewById(R.id.progressBar);
-        mSporociloListView = findViewById(R.id.sporociloListView);
-        mPhotoPickerButton = findViewById(R.id.photoPickerButton);
+        ProgressBar mProgressBar = findViewById(R.id.progressBar);
+        ListView mSporociloListView = findViewById(R.id.sporociloListView);
+        ImageButton mPhotoPickerButton = findViewById(R.id.photoPickerButton);
         mSporociloEditText = findViewById(R.id.sporociloEditText);
         mPosljiButton = findViewById(R.id.posljiButton);
+        Toolbar mToolbar = findViewById(R.id.toolbarChat);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle(mGlasbilo);
+        getSupportActionBar().setSubtitle(mNajemodajalec);
 
-        // Initialize message ListView and its adapter
-        List<Sporocilo> friendlyMessages = new ArrayList<>();
-        mSporociloAdapter = new SporociloAdapter(this, R.layout.item_sporocilo, friendlyMessages);
+
+        // Initialize adapter
+        mSporociloAdapter = new SporociloAdapter(this, R.layout.item_sporocilo);
 
         mSporociloListView.setAdapter(mSporociloAdapter);
 
@@ -119,6 +113,7 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
                 if (charSequence.toString().trim().length() > 0) {
                     mPosljiButton.setEnabled(true);
                 } else {
@@ -130,6 +125,7 @@ public class ChatActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
             }
         });
+
         mSporociloEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(DEFAULT_MSG_LENGTH_LIMIT)});
 
         // Send button sends a message and clears the EditText
@@ -146,7 +142,8 @@ public class ChatActivity extends AppCompatActivity {
                 mSporociloEditText.setText("");
             }
         });
-        mChildEventListener = new ChildEventListener() {
+
+        ChildEventListener mChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Sporocilo sporocilo = dataSnapshot.getValue(Sporocilo.class);
@@ -156,24 +153,27 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
             }
+
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
             }
+
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         };
         mSporociloDatabaseReference.addChildEventListener(mChildEventListener);
-        //mSporociloDatabaseReference2.addChildEventListener(mChildEventListener);
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if(requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK){
             Uri selectedImageUri = data.getData();
 
@@ -189,7 +189,6 @@ public class ChatActivity extends AppCompatActivity {
                     mSporociloDatabaseReference.push().setValue(sporocilo);
 
                     mSporociloDatabaseReference2.push().setValue(sporocilo);
-
                 }
             });
 

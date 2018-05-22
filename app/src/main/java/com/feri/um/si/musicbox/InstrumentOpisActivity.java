@@ -155,6 +155,9 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
              public void onClick(View view) {
                  Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
                  intent.putExtra("najemodajalec", instrument.getNajemodajalec());
+                 intent.putExtra("glasbilo", instrument.getIme());
+                 //intent.putExtra("slika", instrument.getSlika());
+
 
                  startActivity(intent);
              }

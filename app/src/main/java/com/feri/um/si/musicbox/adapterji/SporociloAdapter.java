@@ -20,8 +20,8 @@ import java.util.List;
 
 public class SporociloAdapter extends ArrayAdapter<Sporocilo> {
 
-    public SporociloAdapter(Context context, int resource, List<Sporocilo> objects) {
-        super(context, resource, objects);
+    public SporociloAdapter(Context context, int resource) {
+        super(context, resource);
     }
 
     @Override

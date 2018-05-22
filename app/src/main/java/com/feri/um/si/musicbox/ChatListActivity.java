@@ -3,16 +3,12 @@ package com.feri.um.si.musicbox;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.LogPrinter;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-
-import com.feri.um.si.musicbox.modeli.Sporocilo;
+import com.feri.um.si.musicbox.adapterji.PogovorAdapter;
+import com.feri.um.si.musicbox.modeli.Pogovor;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -20,18 +16,15 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 
 public class ChatListActivity extends AppCompatActivity {
 
-    private String mUporabnik;
-    private ListView mPogovorListView;
-    private FirebaseDatabase mFirebaseDatabase;
-    ArrayList<String> list = new ArrayList<>();
-    ArrayAdapter<String> adapter;
+    private PogovorAdapter mPogovorAdapter;
+
+    ArrayList<Pogovor> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,26 +32,32 @@ public class ChatListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_list);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        mUporabnik = user.getDisplayName();
+        String mUporabnik = user.getDisplayName();
 
         // Initialize Firebase components
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         // Initialize references to views
-        mPogovorListView = findViewById(R.id.pogovorListView);
+        ListView mPogovorListView = findViewById(R.id.pogovorListView);
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, list);
-        mPogovorListView.setAdapter(adapter);
+        mPogovorAdapter = new PogovorAdapter(this, R.layout.item_pogovor);
+        mPogovorListView.setAdapter(mPogovorAdapter);
 
         //Get datasnapshot at your "sporocila" root node
         DatabaseReference ref = mFirebaseDatabase.getReference().child("sporocila").child(mUporabnik);
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String value = dataSnapshot.getKey();
 
-                list.add(value);
-                adapter.notifyDataSetChanged();
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+
+                    Pogovor pogovor = new Pogovor();
+                    pogovor.setSogovorec(dataSnapshot.getKey());
+                    pogovor.setGlasbilo(snapshot.getKey());
+
+                    list.add(pogovor);
+                    mPogovorAdapter.add(pogovor);
+                }
 
             }
 
@@ -88,7 +87,9 @@ public class ChatListActivity extends AppCompatActivity {
 
                 Intent i = new Intent(getApplicationContext(), ChatActivity.class);
 
-                i.putExtra("najemodajalec", list.get(position));
+                i.putExtra("najemodajalec", list.get(position).getSogovorec());
+                i.putExtra("glasbilo", list.get(position).getGlasbilo());
+
 
                 startActivity(i);
             }
