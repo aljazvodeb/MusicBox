@@ -172,23 +172,14 @@
 
             <Button
                 android:id="@+id/dodaj"
-                android:layout_width="164dp"
-                android:layout_height="37dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="11dp"
-                android:text="@string/dodaj"
-                android:layout_alignParentLeft="true" />
+                android:text="@string/dodaj" />
 
-            <Button
-                android:id="@+id/pojdinazaj"
-                android:layout_width="167dp"
-                android:layout_height="37dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="11dp"
-                android:text="Prekliči"
-                android:layout_alignParentRight="true" />
         </RelativeLayout>
 
 

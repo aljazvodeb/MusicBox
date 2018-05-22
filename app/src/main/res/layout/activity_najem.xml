@@ -1,156 +1,171 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/najemiform"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/od_datum"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tx_izposoja"
-        android:layout_marginTop="8dp"
-        android:inputType="" />
 
-    <Button
-        android:id="@+id/btn_date1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/od_datum"
-        android:layout_toEndOf="@+id/od_datum"
-        android:layout_toRightOf="@+id/od_datum"
-        android:text="@string/izberi" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-    <EditText
-        android:id="@+id/do_datum"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/od_datum"
-        android:layout_marginTop="46dp"
-        android:inputType="" />
+        <EditText
+            android:id="@+id/od_datum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tx_izposoja"
+            android:layout_marginTop="8dp"
+            android:layout_toLeftOf="@+id/btn_date1"
+            android:layout_toStartOf="@+id/btn_date1"
+            android:inputType="" />
 
-    <Button
-        android:id="@+id/btn_date2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/do_datum"
-        android:layout_toEndOf="@+id/do_datum"
-        android:layout_toRightOf="@+id/do_datum"
-        android:text="@string/izberi" />
+        <Button
+            android:id="@+id/btn_date1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/od_datum"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/izberi" />
 
-    <TextView
-        android:id="@+id/tx_izposoja"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/termin_izposoje" />
+        <EditText
+            android:id="@+id/do_datum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/od_datum"
+            android:layout_marginTop="46dp"
+            android:layout_toLeftOf="@+id/btn_date2"
+            android:layout_toStartOf="@+id/btn_date2"
+            android:inputType="" />
 
-    <TextView
-        android:id="@+id/tx_vrnitev"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_date2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="@string/termin_vrnitve" />
+        <Button
+            android:id="@+id/btn_date2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/do_datum"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/izberi" />
 
-    <Button
-        android:id="@+id/potrdi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_nazivin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:text="@string/potrdi" />
+        <TextView
+            android:id="@+id/tx_izposoja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/termin_izposoje" />
 
-    <TextView
-        android:id="@+id/tx_najemodajalec"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/do_datum"
-        android:layout_marginTop="34dp"
-        android:text="@string/najemodajalec" />
+        <TextView
+            android:id="@+id/tx_vrnitev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_date2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="@string/termin_vrnitve" />
 
-    <EditText
-        android:id="@+id/najemodajalec_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tx_najemodajalec"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        <Button
+            android:id="@+id/potrdi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_nazivin"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="@string/potrdi" />
 
-    <TextView
-        android:id="@+id/tx_skupaj"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/et_cenadan"
-        android:layout_marginTop="18dp"
-        android:text="@string/cena_skupaj" />
+        <TextView
+            android:id="@+id/tx_najemodajalec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/do_datum"
+            android:layout_marginTop="34dp"
+            android:text="@string/najemodajalec" />
 
-    <EditText
-        android:id="@+id/skupaj"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tx_skupaj"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/najemodajalec_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tx_najemodajalec"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/et_cenadan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tx_cenadan"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/tx_skupaj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/et_cenadan"
+            android:layout_marginTop="18dp"
+            android:text="@string/cena_skupaj" />
 
-    <TextView
-        android:id="@+id/tx_cenadan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/najemodajalec_et"
-        android:layout_marginTop="28dp"
-        android:text="@string/cena_dan" />
+        <EditText
+            android:id="@+id/skupaj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tx_skupaj"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/skupaj"
-        android:layout_marginTop="17dp"
-        android:text="Naziv instrumenta" />
+        <EditText
+            android:id="@+id/et_cenadan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tx_cenadan"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/et_nazivin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:background="@android:color/transparent"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/tx_cenadan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/najemodajalec_et"
+            android:layout_marginTop="28dp"
+            android:text="@string/cena_dan" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/skupaj"
+            android:layout_marginTop="17dp"
+            android:text="Naziv instrumenta" />
+
+        <EditText
+            android:id="@+id/et_nazivin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+    </RelativeLayout>
+
+</ScrollView>
