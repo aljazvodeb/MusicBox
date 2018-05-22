@@ -24,7 +24,7 @@
         android:visible="true" />
 
     <item
-        android:id="@+id/menu_kosarica"
+        android:id="@+id/menu_zgodovina"
         android:enabled="true"
         android:icon="@android:drawable/checkbox_on_background"
         android:title="@string/zgodovina"

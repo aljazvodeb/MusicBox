@@ -22,7 +22,7 @@
         <activity android:name=".NajemActivity" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".ProfilActivity" />
-        <activity android:name=".ZgodovinaActivity"></activity>
+        <activity android:name=".ChatListActivity"></activity>
     </application>
 
 </manifest>

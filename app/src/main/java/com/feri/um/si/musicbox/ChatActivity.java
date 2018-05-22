@@ -70,18 +70,17 @@ public class ChatActivity extends AppCompatActivity {
         date = new Date();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        mNajemnik = user.getDisplayName().replace(" ", "");
-        mNajemodajalec = getIntent().getStringExtra("najemodajalec").replace(" ", "");
-        mGlasbilo = getIntent().getStringExtra("glasbilo").replace(" ", "");
+        mNajemnik = user.getDisplayName();
+        mNajemodajalec = getIntent().getStringExtra("najemodajalec");
 
 
         // Initialize Firebase components
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseStorage = FirebaseStorage.getInstance();
 
-        mSporociloDatabaseReference = mFirebaseDatabase.getReference().child("sporocila").child(mNajemnik).child(mGlasbilo).child(mNajemodajalec);
+        mSporociloDatabaseReference = mFirebaseDatabase.getReference().child("sporocila").child(mNajemnik).child(mNajemodajalec);
 
-        mSporociloDatabaseReference2 = mFirebaseDatabase.getReference().child("sporocila").child(mNajemodajalec).child(mGlasbilo).child(mNajemnik);
+        mSporociloDatabaseReference2 = mFirebaseDatabase.getReference().child("sporocila").child(mNajemodajalec).child(mNajemnik);
 
         mChatSlikeStorageReference = mFirebaseStorage.getReference().child("chat_slike");
 

@@ -215,6 +215,11 @@ public class MainActivity extends AppCompatActivity implements
                 Intent profil = new Intent(getApplicationContext(), ProfilActivity.class);
                 startActivity(profil);
                 break;
+            case R.id.menu_pogovori:
+                Intent pogovori = new Intent(getApplicationContext(), ChatListActivity.class);
+                startActivity(pogovori);
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }
