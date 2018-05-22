@@ -205,6 +205,12 @@ public class MainActivity extends AppCompatActivity implements
                 AuthUI.getInstance().signOut(this);
                 startSignIn();
                 break;
+
+            case R.id.menu_kosarica:
+                Intent zgodovina = new Intent(getApplicationContext(), ZgodovinaActivity.class);
+                startActivity(zgodovina);
+                break;
+
             case R.id.menu_profil:
                 Intent profil = new Intent(getApplicationContext(), ProfilActivity.class);
                 startActivity(profil);

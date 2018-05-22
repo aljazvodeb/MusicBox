@@ -12,6 +12,7 @@ public class Najem {
     private String najemnik;
     private String najemodajalec;
 
+
     public Najem() {}
 
     public Najem (String datumOd, String datumDo, int cenaDan, String cenaSkupaj, String najemnik, String najemodajalec) {
@@ -70,4 +71,6 @@ public class Najem {
     public void setNajemodajalec(String najemodajalec) {
         this.najemodajalec = najemodajalec;
     }
+
+
 }

@@ -156,10 +156,10 @@ public class NajemActivity extends AppCompatActivity {
                 najemnikA = najem.getNajemnik();
 
                 Map<String, Object> najemMap = new HashMap<>();
-                najemMap.put("obdobjeOd", datumodA);
-                najemMap.put("obdobjeDo", datumdoA);
+                najemMap.put("datumOd", datumodA);
+                najemMap.put("datumDo", datumdoA);
                 najemMap.put("cenaDan", cenadanint);
-                najemMap.put("cenaVse", cenaskupajA);
+                najemMap.put("cenaSkupaj", cenaskupajA);
                 najemMap.put("ime", nazivA);
                 najemMap.put("najemnik", najemnikA);
                 najemMap.put("najemodajalec", najemodajalecA);
