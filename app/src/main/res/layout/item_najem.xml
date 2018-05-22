@@ -78,7 +78,9 @@
         android:text="Najemodajalec:"
         android:textColor="@android:color/background_dark"
         android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="36dp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -89,7 +91,8 @@
         android:layout_marginTop="66dp"
         android:text="Najemnik:"
         android:textColor="@android:color/background_dark"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignLeft="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView4"
@@ -100,7 +103,8 @@
         android:layout_marginTop="96dp"
         android:text="Datum od:"
         android:textColor="@android:color/background_dark"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignLeft="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView5"
@@ -111,7 +115,8 @@
         android:layout_marginTop="148dp"
         android:text="Datum do:"
         android:textColor="@android:color/background_dark"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignLeft="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView6"
@@ -121,5 +126,6 @@
         android:layout_alignTop="@+id/skupajCena_text"
         android:text="Skupaj cena:"
         android:textColor="@android:color/background_dark"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignLeft="@+id/textView2" />
 </RelativeLayout>

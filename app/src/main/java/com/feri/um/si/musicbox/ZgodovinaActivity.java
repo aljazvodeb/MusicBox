@@ -44,8 +44,7 @@ public class ZgodovinaActivity extends AppCompatActivity {
 
 
 
-       mFirestore.collection("Najem")
-               .addSnapshotListener(new EventListener<QuerySnapshot>() {
+       mFirestore.collection("Najem").addSnapshotListener(new EventListener<QuerySnapshot>() {
            @Override
            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
 
