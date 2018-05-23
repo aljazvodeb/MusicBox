@@ -25,10 +25,10 @@
         android:id="@+id/pogovorListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#E0E0E0"
         android:divider="@android:color/transparent"
         android:transcriptMode="alwaysScroll"
-        tools:listitem="@layout/item_pogovor"
-        android:padding="8dp"/>
+        tools:listitem="@layout/item_pogovor" />
 
 
 </LinearLayout>
