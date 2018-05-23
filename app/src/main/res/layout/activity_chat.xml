@@ -37,7 +37,8 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:background="@android:drawable/ic_menu_gallery"
-            android:layout_gravity="bottom" />
+            android:layout_gravity="bottom"
+            android:theme="@style/ThemeOverlay.FilterButton"/>
 
         <EditText
             android:id="@+id/sporociloEditText"
@@ -52,7 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:enabled="false"
-            android:text="@string/poslji_sporocilo" />
+            android:text="@string/poslji_sporocilo"
+            android:theme="@style/ThemeOverlay.FilterButton"/>
 
     </LinearLayout>
 

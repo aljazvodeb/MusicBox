@@ -5,182 +5,201 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dodajform"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:layout_height="wrap_content" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </RelativeLayout>
-
-        <RelativeLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/dodajToolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/AppTheme"
+            app:logo="@drawable/ic_logo"
+            app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
+            app:title="@string/dodaj_instrument"
+            app:titleMarginStart="24dp"
+            app:titleTextColor="@android:color/white" />
 
-            <TextView
-                android:id="@+id/ime_tx"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Naziv" />
-
-            <EditText
-                android:id="@+id/ime_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/ime_glasbila1"
-                android:ems="10"
-                android:layout_below="@+id/ime_tx"
-                android:inputType="textPersonName" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-            <TextView
-                android:id="@+id/kategorija_tx"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/vrsta_glasbila" />
+                android:layout_height="wrap_content">
 
-            <Spinner
-                android:id="@+id/kategorija_sp"
+                <TextView
+                    android:id="@+id/ime_tx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Naziv" />
+
+                <EditText
+                    android:id="@+id/ime_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ime_tx"
+                    android:contentDescription="@string/ime_glasbila1"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/kategorija_tx"
-                android:entries="@array/kategorije"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"/>
-        </RelativeLayout>
+                android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/kategorija_tx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vrsta_glasbila" />
 
-            <TextView
-                android:id="@+id/mesto_tx"
+                <Spinner
+                    android:id="@+id/kategorija_sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/kategorija_tx"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:entries="@array/kategorije" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/mesto" />
+                android:layout_height="wrap_content" >
 
-            <Spinner
-                android:id="@+id/mesto_sp"
+                <TextView
+                    android:id="@+id/mesto_tx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mesto" />
+
+                <Spinner
+                    android:id="@+id/mesto_sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/mesto_tx"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:entries="@array/mesta" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:layout_below="@+id/mesto_tx"
-                android:entries="@array/mesta" />
+                android:layout_height="wrap_content" >
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/opis_tx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Podajte opis" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/opis_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/opis_tx"
+                    android:ems="10"
+                    android:gravity="bottom"
+                    android:inputType="textMultiLine" />
 
-            <TextView
-                android:id="@+id/opis_tx"
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Podajte opis" />
+                android:layout_height="wrap_content" >
 
-            <EditText
-                android:id="@+id/opis_et"
+                <TextView
+                    android:id="@+id/fotografija_tx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/url_fotografije" />
+
+                <EditText
+                    android:id="@+id/url_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fotografija_tx"
+                    android:ems="10"
+                    android:inputType="textUri" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:gravity="top"
-                android:layout_below="@+id/opis_tx"
-                android:ems="10"
-                android:inputType="textMultiLine" />
+                android:layout_height="wrap_content" >
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/uporabnik_tx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cena_dan" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/cena_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/uporabnik_tx"
+                    android:ems="10"
+                    android:inputType="number" />
 
-            <TextView
-                android:id="@+id/fotografija_tx"
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/url_fotografije" />
+                android:layout_height="wrap_content" >
 
-            <EditText
-                android:id="@+id/url_et"
+                <TextView
+                    android:id="@+id/stanje_tx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/stanje" />
+
+                <Spinner
+                    android:id="@+id/stanje_sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/stanje_tx"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"
+                    android:entries="@array/stanje" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/fotografija_tx"
-                android:ems="10"
-                android:inputType="textPersonName" />
-        </RelativeLayout>
+                android:layout_height="wrap_content" >
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/dodaj"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="11dp"
+                    android:text="@string/dodaj" />
 
-            <TextView
-                android:id="@+id/uporabnik_tx"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/cena_dan" />
+            </RelativeLayout>
 
-            <EditText
-                android:id="@+id/cena_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/uporabnik_tx"
-                android:ems="10"
-                android:inputType="number" />
 
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/stanje_tx"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:text="@string/stanje" />
 
-            <Spinner
-                android:id="@+id/stanje_sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/stanje"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:layout_below="@+id/stanje_tx" />
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/dodaj"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="11dp"
-                android:text="@string/dodaj" />
-
-        </RelativeLayout>
 
 
     </LinearLayout>

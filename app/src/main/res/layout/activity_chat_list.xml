@@ -27,7 +27,8 @@
         android:layout_height="match_parent"
         android:divider="@android:color/transparent"
         android:transcriptMode="alwaysScroll"
-        tools:listitem="@layout/item_pogovor"/>
+        tools:listitem="@layout/item_pogovor"
+        android:padding="8dp"/>
 
 
 </LinearLayout>

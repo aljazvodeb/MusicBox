@@ -18,74 +18,75 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/vrstica_slika"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/ic_launcher"/>
+
             <TextView
                 android:id="@+id/ime_tx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:text=""
+                android:layout_below="@+id/vrstica_slika"
                 android:textSize="50sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="154dp"
-                tools:layout_editor_absoluteY="31dp" />
+                android:layout_marginTop="10dp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp" >
 
             <Button
                 android:id="@+id/posodobi"
-                android:layout_width="154dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:text="Posodobi email" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:background="@color/colorPrimary"
+                android:text="Posodobi email"
+                android:textColor="@color/cardview_light_background"
+                android:layout_marginTop="4dp"/>
 
             <Button
                 android:id="@+id/sprgeslo"
-                android:layout_width="184dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:text="Spremeni geslo" />
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:text="Spremeni geslo"
+                android:layout_below="@+id/posodobi"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/cardview_light_background"
+                android:layout_marginTop="4dp"/>
 
             <Button
                 android:id="@+id/deaktiviraj"
-                android:layout_width="171dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:text="Deaktiviraj" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:text="Deaktiviraj"
+                android:layout_below="@+id/sprgeslo"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/cardview_light_background"
+                android:layout_marginTop="4dp"/>
+
 
             <Button
                 android:id="@+id/nazaj"
-                android:layout_width="171dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:text="Nazaj" />
+                android:text="Nazaj"
+                android:layout_below="@+id/deaktiviraj"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/cardview_light_background"
+                android:layout_marginTop="40dp"/>
+
         </RelativeLayout>
 
     </LinearLayout>
