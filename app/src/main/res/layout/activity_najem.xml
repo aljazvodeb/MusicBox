@@ -58,7 +58,8 @@
                 android:layout_alignBottom="@+id/od_datum"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:text="@string/izberi" />
+                android:text="@string/izberi"
+                android:theme="@style/ThemeOverlay.FilterButton"/>
 
             <TextView
                 android:id="@+id/tx_vrnitev"
@@ -87,7 +88,8 @@
                 android:layout_alignBottom="@+id/do_datum"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:text="@string/izberi" />
+                android:text="@string/izberi"
+                android:theme="@style/ThemeOverlay.FilterButton"/>
 
             <TextView
                 android:id="@+id/tx_najemodajalec"
@@ -179,12 +181,14 @@
 
             <Button
                 android:id="@+id/potrdi"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/et_nazivin"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
-                android:text="@string/potrdi" />
+                android:text="@string/potrdi"
+                android:theme="@style/ThemeOverlay.FilterButton"/>
+
 
         </RelativeLayout>
 

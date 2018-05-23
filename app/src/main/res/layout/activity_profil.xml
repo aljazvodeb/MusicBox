@@ -41,7 +41,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp" >
+            android:layout_marginTop="24dp" >
 
             <Button
                 android:id="@+id/posodobi"
@@ -74,7 +74,6 @@
                 android:background="@color/colorPrimary"
                 android:textColor="@color/cardview_light_background"
                 android:layout_marginTop="4dp"/>
-
 
             <Button
                 android:id="@+id/nazaj"
