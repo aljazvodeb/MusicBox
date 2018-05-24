@@ -206,9 +206,9 @@ public class MainActivity extends AppCompatActivity implements
                 startSignIn();
                 break;
 
-            case R.id.menu_zgodovina:
-                Intent zgodovina = new Intent(getApplicationContext(), ZgodovinaActivity.class);
-                startActivity(zgodovina);
+            case R.id.menu_izposoje:
+                Intent izposoje = new Intent(getApplicationContext(), IzposojeActivity.class);
+                startActivity(izposoje);
                 break;
 
 

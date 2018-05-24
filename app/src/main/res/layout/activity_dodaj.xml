@@ -20,7 +20,7 @@
             android:theme="@style/AppTheme"
             app:logo="@drawable/ic_logo"
             app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
-            app:title="@string/dodaj_instrument"
+            app:title="@string/oddaj_glasbilo"
             app:titleMarginStart="24dp"
             app:titleTextColor="@android:color/white" />
 

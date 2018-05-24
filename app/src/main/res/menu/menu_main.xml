@@ -6,7 +6,7 @@
         android:id="@+id/menu_dodaj"
         android:checkable="false"
         android:icon="@android:drawable/ic_input_add"
-        android:title="@string/dodaj_glasbilo" />
+        android:title="@string/oddaj_glasbilo" />
 
     <item
         android:id="@+id/menu_profil"
@@ -24,10 +24,10 @@
         android:visible="true" />
 
     <item
-        android:id="@+id/menu_zgodovina"
+        android:id="@+id/menu_izposoje"
         android:enabled="true"
         android:icon="@android:drawable/checkbox_on_background"
-        android:title="@string/zgodovina"
+        android:title="@string/izposoje"
         android:visible="true" />
 
     <item

@@ -160,4 +160,14 @@
         <item>@string/sortiraj_po_ceni</item>
         <item>@string/sortiraj_po_kategoriji</item>
     </string-array>
+    <string name="title_activity_izposoje">IzposojeActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="izposoje">Izposoje</string>
+    <string name="oddaj_glasbilo">Oddaj glasbilo</string>
+    <string name="zahteve">Zahteve</string>
+    <string name="oglasi">Tvoji oglasi</string>
 </resources>
