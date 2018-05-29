@@ -3,7 +3,6 @@ package com.feri.um.si.musicbox;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -19,6 +18,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -36,42 +36,54 @@ public class ChatListActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String mUporabnik = user.getDisplayName();
 
-        // Initialize Firebase components
+        // inicializacija firebase komponent
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
 
-        // Initialize references to views
+        // inicializacija referenc na view
         ListView mPogovorListView = findViewById(R.id.pogovorListView);
         spinner = findViewById(R.id.progressBar);
 
         mPogovorAdapter = new PogovorAdapter(this, R.layout.item_pogovor);
         mPogovorListView.setAdapter(mPogovorAdapter);
 
-        //Get datasnapshot at your "sporocila" root node
+        //pridobi datasnapshot sporocila na "root node"
         DatabaseReference ref = mFirebaseDatabase.getReference().child("sporocila").child(mUporabnik);
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.exists()) {
+                    Toast.makeText(getApplicationContext(), "Nimate sporočil! ", Toast.LENGTH_SHORT).show();
+                    spinner.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
         ref.addChildEventListener(new ChildEventListener() {
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 if (dataSnapshot.exists()) {
-
+                    spinner.setVisibility(View.VISIBLE);
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (dataSnapshot.exists()) {
+                            Pogovor pogovor = new Pogovor();
+                            pogovor.setSogovorec(dataSnapshot.getKey());
+                            pogovor.setGlasbilo(snapshot.getKey());
 
-                        Pogovor pogovor = new Pogovor();
-                        pogovor.setSogovorec(dataSnapshot.getKey());
-                        pogovor.setGlasbilo(snapshot.getKey());
-
-                        list.add(pogovor);
-                        mPogovorAdapter.add(pogovor);
+                            list.add(pogovor);
+                            mPogovorAdapter.add(pogovor);
+                            spinner.setVisibility(View.GONE);
+                        }
                     }
-
-                    spinner.setVisibility(View.GONE);
-
                 } else {
                     spinner.setVisibility(View.GONE);
                 }
-
-
             }
 
             @Override

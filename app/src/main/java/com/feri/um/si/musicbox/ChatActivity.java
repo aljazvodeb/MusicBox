@@ -67,7 +67,7 @@ public class ChatActivity extends AppCompatActivity {
         String mGlasbilo = getIntent().getStringExtra("glasbilo");
 
 
-        // Initialize Firebase components
+        // inicializacija firebase komponent
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         FirebaseStorage mFirebaseStorage = FirebaseStorage.getInstance();
 
@@ -75,7 +75,7 @@ public class ChatActivity extends AppCompatActivity {
         mSporociloDatabaseReference2 = mFirebaseDatabase.getReference().child("sporocila").child(mNajemodajalec).child(mNajemnik).child(mGlasbilo);
         mChatSlikeStorageReference = mFirebaseStorage.getReference().child("chat_slike");
 
-        // Initialize references to views
+        // inicializacija referenc na view
         ListView mSporociloListView = findViewById(R.id.sporociloListView);
         ImageButton mPhotoPickerButton = findViewById(R.id.photoPickerButton);
         mSporociloEditText = findViewById(R.id.sporociloEditText);
@@ -87,11 +87,11 @@ public class ChatActivity extends AppCompatActivity {
         spinner = findViewById(R.id.progressBar);
         spinner.setVisibility(View.GONE);
 
-        // Initialize adapter
+        // inicializacija adapterja
         mSporociloAdapter = new SporociloAdapter(this, R.layout.item_sporocilo);
         mSporociloListView.setAdapter(mSporociloAdapter);
 
-        // ImagePickerButton shows an image picker to upload a image for a message
+        // nalaganje slik
         mPhotoPickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,7 +102,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        // Enable Send button when there's text to send
+        // omogoci gumb, samo ko je vnesen tekst
         mSporociloEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -125,7 +125,7 @@ public class ChatActivity extends AppCompatActivity {
 
         mSporociloEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(DEFAULT_MSG_LENGTH_LIMIT)});
 
-        // Send button sends a message and clears the EditText
+        // ob kliku na gumb poslji sporocilo
         mPosljiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,7 +136,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 mSporociloDatabaseReference2.push().setValue(sporocilo);
 
-                // Clear input box
+                // počisti vnosno polje
                 mSporociloEditText.setText("");
 
                 spinner.setVisibility(View.GONE);
@@ -183,10 +183,10 @@ public class ChatActivity extends AppCompatActivity {
             Uri selectedImageUri = data.getData();
             spinner.setVisibility(View.VISIBLE);
 
-            // Get reference to store file at chat_slike/<FILENAME>
+            // pridobimo referenco za shranjevanje slike
             StorageReference photoRef = mChatSlikeStorageReference.child(selectedImageUri.getLastPathSegment());
 
-            // Upload file to Firebase Storage
+            // nalozimo v firebase
             photoRef.putFile(selectedImageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
