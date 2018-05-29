@@ -37,7 +37,6 @@ public class ChatListActivity extends AppCompatActivity {
         napredek.setTitle("Nalaganje");
         napredek.setMessage("Pridobivamo podatke... ");
         napredek.setCancelable(false);
-        napredek.show();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String mUporabnik = user.getDisplayName();
@@ -57,6 +56,8 @@ public class ChatListActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
+                napredek.show();
+
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
 
                     Pogovor pogovor = new Pogovor();
@@ -66,6 +67,7 @@ public class ChatListActivity extends AppCompatActivity {
                     list.add(pogovor);
                     mPogovorAdapter.add(pogovor);
                 }
+
                 napredek.dismiss();
 
             }
