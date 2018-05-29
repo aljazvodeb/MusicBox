@@ -137,55 +137,60 @@ public class NajemActivity extends AppCompatActivity {
         potrdi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String myFormat = "dd.MM.yyyy";
-                long razl = 0;
-                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                try {
-                    Date datum1 = sdf.parse(datumodA);
-                    Date datum2 = sdf.parse(datumdoA);
-                    razl = datum2.getTime()-datum1.getTime();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                if (!datum_od.getText().toString().equals("") && !datum_do.getText().toString().equals("")&& TimeUnit.DAYS.convert(razl, TimeUnit.MILLISECONDS)> 0) {
-                datumodA = datum_od.getText().toString();
-                najem.setDatumOd(datumodA);
-                datumdoA = datum_do.getText().toString();
-                najem.setDatumDo(datumdoA);
-                najemodajalecA = najemodajalec.getText().toString();
-                najem.setNajemodajalec(najemodajalecA);
-                cenaskupajA = cenaskupaj.getText().toString();
-                najem.setCenaSkupaj(cenaskupajA);
-                najem.setNajemnik(getFirebaseUser().getDisplayName());
-                najemnikA = najem.getNajemnik();
-                najem.setStatus("Zahteva");
-                statusA = najem.getStatus();
 
-                Map<String, Object> najemMap = new HashMap<>();
-                najemMap.put("datumOd", datumodA);
-                najemMap.put("datumDo", datumdoA);
-                najemMap.put("cenaDan", cenadanint);
-                najemMap.put("cenaSkupaj", cenaskupajA);
-                najemMap.put("ime", nazivA);
-                najemMap.put("najemnik", najemnikA);
-                najemMap.put("najemodajalec", najemodajalecA);
-                najemMap.put("status", statusA);
+                if (!datum_od.getText().toString().equals("") && !datum_do.getText().toString().equals(""))  {
+                    String myFormat = "dd.MM.yyyy";
+                    long razl = 0;
+                    SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                    try {
+                        Date datum1 = sdf.parse(datumodA);
+                        Date datum2 = sdf.parse(datumdoA);
+                        razl = datum2.getTime()-datum1.getTime();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    if (TimeUnit.DAYS.convert(razl, TimeUnit.MILLISECONDS)> 0) {
+                        datumodA = datum_od.getText().toString();
+                        najem.setDatumOd(datumodA);
+                        datumdoA = datum_do.getText().toString();
+                        najem.setDatumDo(datumdoA);
+                        najemodajalecA = najemodajalec.getText().toString();
+                        najem.setNajemodajalec(najemodajalecA);
+                        cenaskupajA = cenaskupaj.getText().toString();
+                        najem.setCenaSkupaj(cenaskupajA);
+                        najem.setNajemnik(getFirebaseUser().getDisplayName());
+                        najemnikA = najem.getNajemnik();
+                        najem.setStatus("Zahteva");
+                        statusA = najem.getStatus();
 
-                    mFirestore.collection("Najem").add(najemMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Toast.makeText(NajemActivity.this, "Zahteva je bila poslana!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            String napaka = e.getMessage();
-                            Toast.makeText(NajemActivity.this, "Napaka:" + napaka, Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                        Map<String, Object> najemMap = new HashMap<>();
+                        najemMap.put("datumOd", datumodA);
+                        najemMap.put("datumDo", datumdoA);
+                        najemMap.put("cenaDan", cenadanint);
+                        najemMap.put("cenaSkupaj", cenaskupajA);
+                        najemMap.put("ime", nazivA);
+                        najemMap.put("najemnik", najemnikA);
+                        najemMap.put("najemodajalec", najemodajalecA);
+                        najemMap.put("status", statusA);
+
+                        mFirestore.collection("Najem").add(najemMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Toast.makeText(NajemActivity.this, "Zahteva je bila poslana!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                String napaka = e.getMessage();
+                                Toast.makeText(NajemActivity.this, "Napaka:" + napaka, Toast.LENGTH_SHORT).show();
+                            }
+                        });
                 } else {
+                    Toast.makeText(NajemActivity.this, "Napaka v datumu! Preverite in poskusite ponovno!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
                     Toast.makeText(NajemActivity.this, "Napaka v datumu! Preverite in poskusite ponovno!", Toast.LENGTH_SHORT).show();
                 }
             }
