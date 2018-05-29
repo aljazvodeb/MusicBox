@@ -19,7 +19,7 @@
             android:theme="@style/AppTheme"
             app:logo="@drawable/ic_logo"
             app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
-            app:title="@string/kosarica"
+            app:title="@string/zahtevazanajem"
             app:titleMarginStart="24dp"
             app:titleTextColor="@android:color/white" />
 
@@ -186,7 +186,7 @@
                 android:layout_below="@+id/et_nazivin"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
-                android:text="@string/potrdi"
+                android:text="@string/zahteva"
                 android:theme="@style/ThemeOverlay.FilterButton"/>
 
 

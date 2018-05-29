@@ -60,55 +60,55 @@ public class DodajActivity extends AppCompatActivity {
         dodaj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imeA = ime.getText().toString();
-                instrument.setIme(imeA);
-                opisA = opis.getText().toString();
-                instrument.setOpis(opisA);
-                urlA = url.getText().toString();
-                instrument.setSlika(urlA);
-                mestoA = mesto.getSelectedItem().toString();
-                instrument.setMesto(mestoA);
-                kategorijaA=kategorija.getSelectedItem().toString();
-                instrument.setKategorija(kategorijaA);
-                stanjeA=stanje.getSelectedItem().toString();
-                instrument.setStanje(stanjeA);
-                cenaA= Integer.parseInt(cena.getText().toString());
-                instrument.setCena(cenaA);
-                instrument.setNajemodajalec(getFirebaseUser().getDisplayName());
-                najemodajalecA = instrument.getNajemodajalec();
+                if (!cena.getText().toString().equals("") && !ime.getText().toString().isEmpty() && !opis.getText().toString().isEmpty() && !url.getText().toString().isEmpty()) {
+                    imeA = ime.getText().toString();
+                    instrument.setIme(imeA);
+                    opisA = opis.getText().toString();
+                    instrument.setOpis(opisA);
+                    urlA = url.getText().toString();
+                    instrument.setSlika(urlA);
+                    mestoA = mesto.getSelectedItem().toString();
+                    instrument.setMesto(mestoA);
+                    kategorijaA=kategorija.getSelectedItem().toString();
+                    instrument.setKategorija(kategorijaA);
+                    stanjeA=stanje.getSelectedItem().toString();
+                    instrument.setStanje(stanjeA);
+                    cenaA= Integer.parseInt(cena.getText().toString());
+                    instrument.setCena(cenaA);
+                    instrument.setNajemodajalec(getFirebaseUser().getDisplayName());
+                    najemodajalecA = instrument.getNajemodajalec();
 
-                Map<String, Object> instrumentiMap = new HashMap<>();
-                instrumentiMap.put("ime", imeA);
-                instrumentiMap.put("opis", opisA);
-                instrumentiMap.put("slika", urlA);
-                instrumentiMap.put("mesto", mestoA);
-                instrumentiMap.put("kategorija", kategorijaA);
-                instrumentiMap.put("stanje", stanjeA);
-                instrumentiMap.put("cena", cenaA);
-                instrumentiMap.put("najemodajalec", najemodajalecA);
+                    Map<String, Object> instrumentiMap = new HashMap<>();
+                    instrumentiMap.put("ime", imeA);
+                    instrumentiMap.put("opis", opisA);
+                    instrumentiMap.put("slika", urlA);
+                    instrumentiMap.put("mesto", mestoA);
+                    instrumentiMap.put("kategorija", kategorijaA);
+                    instrumentiMap.put("stanje", stanjeA);
+                    instrumentiMap.put("cena", cenaA);
+                    instrumentiMap.put("najemodajalec", najemodajalecA);
 
-
-                if (cena.getText().toString().isEmpty() || ime.getText().toString().isEmpty() || opis.getText().toString().isEmpty() || url.getText().toString().isEmpty()) {
-                    Toast.makeText(DodajActivity.this, "Niste napolnili vseh polj. Dodajanje instrumenta neuspesno.", Toast.LENGTH_SHORT).show();
-                }
-                if (Integer.parseInt(cena.getText().toString()) > 100) {
-                    Toast.makeText(DodajActivity.this, "Napaka cena je prevelika!", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    mFirestore.collection("Instrumenti").add(instrumentiMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Toast.makeText(DodajActivity.this, "Instrument uspesno dodan!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            String napaka = e.getMessage();
-                            Toast.makeText(DodajActivity.this, "Napaka:" + napaka, Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    if (Integer.parseInt(cena.getText().toString()) > 100) {
+                        Toast.makeText(DodajActivity.this, "Napaka! Cena je prevelika!", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        mFirestore.collection("Instrumenti").add(instrumentiMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Toast.makeText(DodajActivity.this, "Instrument uspešno dodan!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                String napaka = e.getMessage();
+                                Toast.makeText(DodajActivity.this, "Napaka:" + napaka, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                } else {
+                        Toast.makeText(DodajActivity.this, "Niste napolnili vseh polj. Poskusite ponovno!.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

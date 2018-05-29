@@ -33,7 +33,7 @@
     <string name="dodaj_instrument">Dodaj glasbilo</string>
     <string name="profil">Profil</string>
     <string name="zgodovina">Zgodovina</string>
-    <string name="kosarica">Košarica</string>
+    <string name="zahtevazanajem">Zahteva za najem</string>
     <string name="pogovori">Pogovori</string>
     <string name="stanje">Stanje</string>
     <string name="vrsta_glasbila">Vrsta glasbila</string>
@@ -46,7 +46,9 @@
     <string name="najemodajalec">Najemodajalec</string>
     <string name="cena_dan">Cena/dan</string>
     <string name="cena_skupaj">Cena skupaj</string>
+    <string name="zahteva">Pošlji zahtevo</string>
     <string name="potrdi">Potrdi</string>
+
     <string name="posodobi" />
     <!-- seznam glasbil -->
     <string-array name="kategorije">

@@ -1,5 +1,6 @@
 package com.feri.um.si.musicbox;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,8 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.feri.um.si.musicbox.adapterji.NajemListAdapter;
+import com.feri.um.si.musicbox.adapterji.ZgodovinaAdapter;
+import com.feri.um.si.musicbox.modeli.Instrument;
 import com.feri.um.si.musicbox.modeli.Najem;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -22,21 +26,28 @@ import java.util.List;
 
 public class FragmentZgodovina extends Fragment {
 
-    public static final String TAG ="Firelog";
+    public static final String TAG ="ZGODOVINA";
 
     private RecyclerView mList_zgodovina;
     private FirebaseFirestore mFirestore;
     private List<Najem> najemList;
-    private NajemListAdapter najemListAdapter;
+    private List<Instrument> instrumentList;
+    ProgressDialog napredek;
+    private ZgodovinaAdapter najemListAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_tab_zgodovina, container, false);
 
+        napredek = new ProgressDialog(getActivity());
+        napredek.setTitle("Nalaganje");
+        napredek.setMessage("Pridobivamo podatke... ");
+        napredek.setCancelable(false);
+        napredek.show();
+
         return rootView;
     }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -44,7 +55,8 @@ public class FragmentZgodovina extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         najemList = new ArrayList<>();
-        najemListAdapter = new NajemListAdapter(najemList);
+        instrumentList = new ArrayList<>();
+        najemListAdapter = new ZgodovinaAdapter(getContext(), najemList, instrumentList);
 
         mList_zgodovina = (RecyclerView) getView().findViewById(R.id.list_zgodovina);
         mList_zgodovina.setHasFixedSize(true);
@@ -63,15 +75,22 @@ public class FragmentZgodovina extends Fragment {
                 }
 
                 for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
-
-
-                    if (doc.getType() == DocumentChange.Type.ADDED) {
-                        Najem najem = doc.getDocument().toObject(Najem.class);
-                        najemList.add(najem);
-
-                        najemListAdapter.notifyDataSetChanged();
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String trenutni = user.getDisplayName();
+                    String vBazi = doc.getDocument().getString("najemnik");
+                    if (trenutni.equals(vBazi)) {
+                        if (doc.getType() == DocumentChange.Type.ADDED) {
+                            if (doc.getDocument().getString("status").equals("Potrjeno")) {
+                                Najem n = doc.getDocument().toObject(Najem.class).dodajID(doc.getDocument().getId());
+                                Instrument i = doc.getDocument().toObject(Instrument.class).dodajID(doc.getDocument().getId());
+                                instrumentList.add(i);
+                                najemList.add(n);
+                                najemListAdapter.notifyDataSetChanged();
+                            }
+                        }
                     }
                 }
+                napredek.dismiss();
             }
         });
     }

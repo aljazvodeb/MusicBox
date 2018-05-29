@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements
     TextView mCurrentSortByView;
 
     @BindView(R.id.recycler_instrumenti)
-    RecyclerView mRestaurantsRecycler;
+    RecyclerView mInstrumentiRecycler;
 
     @BindView(R.id.prazno)
     ViewGroup mEmptyView;
@@ -105,10 +105,10 @@ public class MainActivity extends AppCompatActivity implements
             protected void onDataChanged() {
                 // ce je seznam prazen
                 if (getItemCount() == 0) {
-                    mRestaurantsRecycler.setVisibility(View.GONE);
+                    mInstrumentiRecycler.setVisibility(View.GONE);
                     mEmptyView.setVisibility(View.VISIBLE);
                 } else {
-                    mRestaurantsRecycler.setVisibility(View.VISIBLE);
+                    mInstrumentiRecycler.setVisibility(View.VISIBLE);
                     mEmptyView.setVisibility(View.GONE);
                 }
             }
@@ -120,8 +120,8 @@ public class MainActivity extends AppCompatActivity implements
             }
         };
 
-        mRestaurantsRecycler.setLayoutManager(new LinearLayoutManager(this));
-        mRestaurantsRecycler.setAdapter(mAdapter);
+        mInstrumentiRecycler.setLayoutManager(new LinearLayoutManager(this));
+        mInstrumentiRecycler.setAdapter(mAdapter);
     }
 
     @Override
@@ -210,7 +210,6 @@ public class MainActivity extends AppCompatActivity implements
                 Intent izposoje = new Intent(getApplicationContext(), IzposojeActivity.class);
                 startActivity(izposoje);
                 break;
-
 
             case R.id.menu_profil:
                 Intent profil = new Intent(getApplicationContext(), ProfilActivity.class);

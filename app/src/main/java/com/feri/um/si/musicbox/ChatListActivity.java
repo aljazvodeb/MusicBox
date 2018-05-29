@@ -1,8 +1,9 @@
 package com.feri.um.si.musicbox;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 public class ChatListActivity extends AppCompatActivity {
 
     private PogovorAdapter mPogovorAdapter;
+    ProgressDialog napredek;
 
     ArrayList<Pogovor> list = new ArrayList<>();
 
@@ -30,6 +32,12 @@ public class ChatListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_list);
+
+        napredek = new ProgressDialog(this);
+        napredek.setTitle("Nalaganje");
+        napredek.setMessage("Pridobivamo podatke... ");
+        napredek.setCancelable(false);
+        napredek.show();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String mUporabnik = user.getDisplayName();
@@ -58,6 +66,7 @@ public class ChatListActivity extends AppCompatActivity {
                     list.add(pogovor);
                     mPogovorAdapter.add(pogovor);
                 }
+                napredek.dismiss();
 
             }
 

@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,9 +37,9 @@ import butterknife.ButterKnife;
 
 public class NajemActivity extends AppCompatActivity {
     Button potrdi, izberidatum1, izberidatum2;
-    EditText datum_od, datum_do, najemodajalec, cenadan, cenaskupaj, naziv;
+    EditText datum_od, datum_do, najemodajalec, cenadan, cenaskupaj, naziv, status;
     public static final String Firebase_Server_URL = "https://insertdata-android-examples.firebaseio.com/";
-    String datumodA, datumdoA, najemodajalecA, najemnikA, nazivA, cenaskupajA;
+    String datumodA, datumdoA, najemodajalecA, najemnikA, nazivA, cenaskupajA, statusA;
     int cenadanint;
 
     private FirebaseFirestore mFirestore;
@@ -69,6 +70,7 @@ public class NajemActivity extends AppCompatActivity {
         cenadan.setText(cenadanint+" €");
 
         final Najem najem = new Najem();
+
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
             Calendar cal = Calendar.getInstance();
@@ -76,17 +78,17 @@ public class NajemActivity extends AppCompatActivity {
             private void updateLabel() {
                 String myFormat = "dd.MM.yyyy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
                 if (datum_od.getText().toString().equals("")) {
                     datum_od.setText(sdf.format(cal.getTime()));
                     datumodA = sdf.format(cal.getTime());
                     if (!datum_od.getText().toString().equals("") && !datum_do.getText().toString().equals("")) {
-                        String add = datum_od.getText().toString();
                         try {
                             Date datum1 = sdf.parse(datumodA);
                             Date datum2 = sdf.parse(datumdoA);
                             long razl = datum2.getTime()-datum1.getTime();
-                            cenaskupaj.setText(TimeUnit.DAYS.convert(razl, TimeUnit.MILLISECONDS)*cenadanint+" €");
-                            if (TimeUnit.DAYS.convert(razl, TimeUnit.MILLISECONDS)<0) {
+                            cenaskupaj.setText(TimeUnit.DAYS.convert(razl, TimeUnit.MILLISECONDS)*cenadanint+" €"); //izracunamo ceno
+                            if (TimeUnit.DAYS.convert(razl, TimeUnit.MILLISECONDS)<=0) {
                                 Toast.makeText(NajemActivity.this, "Napaka v datumu!", Toast.LENGTH_SHORT).show();
                             }
                         }catch (Exception e) {
@@ -102,7 +104,7 @@ public class NajemActivity extends AppCompatActivity {
                             Date datum2 = sdf.parse(datumdoA);
                             long razl = datum2.getTime()-datum1.getTime();
                             cenaskupaj.setText(TimeUnit.DAYS.convert(razl, TimeUnit.MILLISECONDS)*cenadanint+" €");
-                            if (TimeUnit.DAYS.convert(razl, TimeUnit.MILLISECONDS)<0) {
+                            if (TimeUnit.DAYS.convert(razl, TimeUnit.MILLISECONDS)<=0) {
                                 Toast.makeText(NajemActivity.this, "Napaka v datumu!", Toast.LENGTH_SHORT).show();
                             }
                         }catch (Exception e) {
@@ -111,6 +113,7 @@ public class NajemActivity extends AppCompatActivity {
                     }
                 }
             }
+
 
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -122,13 +125,14 @@ public class NajemActivity extends AppCompatActivity {
             }
         };
 
+
         izberidatum1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
-                new DatePickerDialog(NajemActivity.this, date, cal
-                        .get(Calendar.YEAR), cal.get(Calendar.MONTH),
-                        cal.get(Calendar.DAY_OF_MONTH)).show();
+                DatePickerDialog dpDialog = new DatePickerDialog(NajemActivity.this, date, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+                dpDialog.getDatePicker().setMinDate(cal.getTimeInMillis()); // onemogocimo izbiro zadnjih datumov
+                dpDialog.show();
             }
         });
 
@@ -136,14 +140,25 @@ public class NajemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
-                new DatePickerDialog(NajemActivity.this, date, cal
-                        .get(Calendar.YEAR), cal.get(Calendar.MONTH),
-                        cal.get(Calendar.DAY_OF_MONTH)).show();
+                DatePickerDialog dpDialog = new DatePickerDialog(NajemActivity.this, date, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+                dpDialog.getDatePicker().setMinDate(cal.getTimeInMillis()); // onemogocimo izbiro zadnjih datumov
+                dpDialog.show();
             }
         });
         potrdi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String myFormat = "dd.MM.yyyy";
+                long razl = 0;
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                try {
+                    Date datum1 = sdf.parse(datumodA);
+                    Date datum2 = sdf.parse(datumdoA);
+                    razl = datum2.getTime()-datum1.getTime();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if (!datum_od.getText().toString().equals("") && !datum_do.getText().toString().equals("")&& TimeUnit.DAYS.convert(razl, TimeUnit.MILLISECONDS)!=0) {
                 datumodA = datum_od.getText().toString();
                 najem.setDatumOd(datumodA);
                 datumdoA = datum_do.getText().toString();
@@ -154,6 +169,8 @@ public class NajemActivity extends AppCompatActivity {
                 najem.setCenaSkupaj(cenaskupajA);
                 najem.setNajemnik(getFirebaseUser().getDisplayName());
                 najemnikA = najem.getNajemnik();
+                najem.setStatus("Zahteva");
+                statusA = najem.getStatus();
 
                 Map<String, Object> najemMap = new HashMap<>();
                 najemMap.put("datumOd", datumodA);
@@ -163,10 +180,14 @@ public class NajemActivity extends AppCompatActivity {
                 najemMap.put("ime", nazivA);
                 najemMap.put("najemnik", najemnikA);
                 najemMap.put("najemodajalec", najemodajalecA);
+                najemMap.put("status", statusA);
+
+
+
                     mFirestore.collection("Najem").add(najemMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            Toast.makeText(NajemActivity.this, "Najem uspesen! Dodano v kosarico.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NajemActivity.this, "Zahteva je bila poslana!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
                         }
@@ -177,7 +198,10 @@ public class NajemActivity extends AppCompatActivity {
                             Toast.makeText(NajemActivity.this, "Napaka:" + napaka, Toast.LENGTH_SHORT).show();
                         }
                     });
+                } else {
+                    Toast.makeText(NajemActivity.this, "Napaka v datumu!", Toast.LENGTH_SHORT).show();
                 }
+            }
         });
 
     }

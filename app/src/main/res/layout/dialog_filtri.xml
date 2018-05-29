@@ -117,12 +117,13 @@
             android:text="@string/preklic"
             android:textColor="@color/greySecondary"
             android:theme="@style/ThemeOverlay.FilterButton" />
+
         <Button
             android:id="@+id/button_iskanje"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/potrdi"
+            android:text="Potrdi"
             android:theme="@style/ThemeOverlay.FilterButton" />
 
     </LinearLayout>

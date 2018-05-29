@@ -227,6 +227,7 @@
             app:srcCompat="@drawable/fui_ic_mail_white_24dp"
             app:layout_anchor="@id/kosarica"
             android:layout_marginRight="80dp"
+            android:background="?android:attr/selectableItemBackground"
             android:layout_marginEnd="80dp"
             app:layout_anchorGravity="center|left|start" />
 
@@ -235,6 +236,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
+            android:background="?android:attr/selectableItemBackground"
             android:layout_marginEnd="16dp"
             app:backgroundTint="@android:color/holo_green_dark"
             app:srcCompat="@drawable/ic_add_shopping_cart_black_24dp"

@@ -4,24 +4,26 @@ package com.feri.um.si.musicbox.modeli;
  * Created by simon on 20. 01. 2018.
  */
 
-public class Najem {
+public class Najem extends OsebaID {
     private String datumOd;
     private String datumDo;
     private int cenaDan;
     private String cenaSkupaj;
     private String najemnik;
     private String najemodajalec;
+    private String status;
 
 
     public Najem() {}
 
-    public Najem (String datumOd, String datumDo, int cenaDan, String cenaSkupaj, String najemnik, String najemodajalec) {
+    public Najem (String datumOd, String datumDo, int cenaDan, String cenaSkupaj, String najemnik, String najemodajalec, String status) {
         this.datumOd = datumOd;
         this.datumDo = datumDo;
         this.cenaDan = cenaDan;
         this.cenaSkupaj=cenaSkupaj;
         this.najemnik=najemnik;
         this.najemodajalec=najemodajalec;
+        this.status=status;
     }
 
     public String getDatumOd() {
@@ -73,4 +75,11 @@ public class Najem {
     }
 
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

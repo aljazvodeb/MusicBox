@@ -1,6 +1,6 @@
 package com.feri.um.si.musicbox.modeli;
 
-public class Instrument {
+public class Instrument extends OsebaID {
 
     public static final String OZNAKA_MESTO = "mesto";
     public static final String OZNAKA_KATEGORIJA = "kategorija";

@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:visibility="visible">
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         app:contentPadding="3dp"
@@ -23,25 +20,31 @@
             android:layout_margin="8dp">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="69dp"
                 android:layout_marginBottom="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0">
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="0dp">
+
+                <TextView
+                    android:id="@+id/vrstica_cena"
+                    style="@style/AppTheme.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/greySecondary"
+                    android:textSize="15sp"
+                    tools:text="200€"
+                    android:layout_alignParentLeft="true" />
 
                 <TextView
                     android:id="@+id/vrstica_ime"
                     style="@style/AppTheme.Subheader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
                     android:layout_alignStart="@+id/vrstica_datum_od"
                     android:ellipsize="end"
                     android:maxLines="1"
@@ -49,86 +52,64 @@
                     android:layout_alignLeft="@+id/vrstica_datum_od" />
 
                 <TextView
-                    android:id="@+id/vrstica_datum_od"
-                    style="@style/AppTheme.Body1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/greySecondary"
-                    tools:text="1.1.2018"
-                    android:layout_alignParentLeft="true" />
-
-                <TextView
-                    android:id="@+id/vrstica_pomisljaj"
-                    style="@style/AppTheme.Body1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="62dp"
-                    android:textColor="@color/greySecondary"
-                    tools:text="-"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="62dp" />
-
-                <TextView
                     android:id="@+id/vrstica_datum_do"
                     style="@style/AppTheme.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/vrstica_najemnik"
+                    android:layout_marginStart="98dp"
                     android:textColor="@color/greySecondary"
-                    tools:text="13.2.2018"
-                    android:layout_toRightOf="@+id/vrstica_najemnik" />
+                    tools:text="1.1.2018"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="98dp" />
+
+                <TextView
+                    android:id="@+id/vrstica_datum_od"
+                    style="@style/AppTheme.Body1"
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/greySecondary"
+                    tools:text="13.12.2017" />
 
 
                 <TextView
-                    android:id="@+id/vrstica_najemnik"
+                    android:id="@+id/vrstica_najemodajalec"
                     style="@style/AppTheme.Body1"
                     android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_below="@+id/vrstica_datum_od"
-                    android:layout_marginTop="7dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="55dp"
+                    android:layout_marginRight="55dp"
                     android:textColor="@color/greySecondary"
                     tools:text="Aljaž Vodeb" />
 
+                <ImageButton
+                    android:id="@+id/chat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"
+                    android:background="#4169E1 "
+                    app:srcCompat="@android:drawable/ic_menu_send" />
+
                 <TextView
-                    android:id="@+id/vrstica_cena"
-                    style="@style/AppTheme.Caption"
+                    android:id="@+id/pomisljaj"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginEnd="43dp"
-                    android:layout_marginRight="43dp"
-                    android:textColor="@color/greySecondary"
-                    tools:text="200€" />
-
-                <ImageButton
-                    android:id="@+id/imageButtonZavrni"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginStart="83dp"
                     android:background="?android:attr/selectableItemBackground"
-                    app:srcCompat="@drawable/ic_delete" />
-
-                <ImageButton
-                    android:id="@+id/imageButtonSprejmi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="63dp"
-                    android:layout_marginRight="63dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    app:srcCompat="@drawable/ic_checkmark" />
+                    android:text="-"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="83dp" />
 
 
             </RelativeLayout>

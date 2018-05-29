@@ -24,7 +24,7 @@ public class InstrumentAdapter extends FirestoreAdapter<InstrumentAdapter.ViewHo
 
     public interface OnInstrumentSelectedListener {
 
-        void onInstrumentSelected(DocumentSnapshot restaurant);
+        void onInstrumentSelected(DocumentSnapshot instrument);
 
     }
 
@@ -38,7 +38,7 @@ public class InstrumentAdapter extends FirestoreAdapter<InstrumentAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new ViewHolder(inflater.inflate(R.layout.vrstica, parent, false));
+        return new ViewHolder(inflater.inflate(R.layout.item_filter, parent, false));
     }
 
     @Override
