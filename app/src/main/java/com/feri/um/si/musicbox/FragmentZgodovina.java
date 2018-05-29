@@ -32,19 +32,12 @@ public class FragmentZgodovina extends Fragment {
     private FirebaseFirestore mFirestore;
     private List<Najem> najemList;
     private List<Instrument> instrumentList;
-    ProgressDialog napredek;
     private ZgodovinaAdapter najemListAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_tab_zgodovina, container, false);
-
-        napredek = new ProgressDialog(getActivity());
-        napredek.setTitle("Nalaganje");
-        napredek.setMessage("Pridobivamo podatke... ");
-        napredek.setCancelable(false);
-        napredek.show();
 
         return rootView;
     }
@@ -92,7 +85,6 @@ public class FragmentZgodovina extends Fragment {
                         }
                     }
                 }
-                napredek.dismiss();
             }
         });
     }

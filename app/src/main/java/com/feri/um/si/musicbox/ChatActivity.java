@@ -42,6 +42,7 @@ public class ChatActivity extends AppCompatActivity {
     private SporociloAdapter mSporociloAdapter;
     private EditText mSporociloEditText;
     private Button mPosljiButton;
+    private ProgressBar spinner;
 
     private String mNajemnik;
     private DateFormat dateFormat;
@@ -75,7 +76,6 @@ public class ChatActivity extends AppCompatActivity {
         mChatSlikeStorageReference = mFirebaseStorage.getReference().child("chat_slike");
 
         // Initialize references to views
-        ProgressBar mProgressBar = findViewById(R.id.progressBar);
         ListView mSporociloListView = findViewById(R.id.sporociloListView);
         ImageButton mPhotoPickerButton = findViewById(R.id.photoPickerButton);
         mSporociloEditText = findViewById(R.id.sporociloEditText);
@@ -84,15 +84,12 @@ public class ChatActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(mGlasbilo);
         getSupportActionBar().setSubtitle(mNajemodajalec);
-
+        spinner = findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
 
         // Initialize adapter
         mSporociloAdapter = new SporociloAdapter(this, R.layout.item_sporocilo);
-
         mSporociloListView.setAdapter(mSporociloAdapter);
-
-        // Initialize progress bar
-        mProgressBar.setVisibility(ProgressBar.INVISIBLE);
 
         // ImagePickerButton shows an image picker to upload a image for a message
         mPhotoPickerButton.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +129,7 @@ public class ChatActivity extends AppCompatActivity {
         mPosljiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                spinner.setVisibility(View.VISIBLE);
 
                 Sporocilo sporocilo = new Sporocilo(mSporociloEditText.getText().toString(), mNajemnik, null, dateFormat.format(date));
                 mSporociloDatabaseReference.push().setValue(sporocilo);
@@ -140,14 +138,21 @@ public class ChatActivity extends AppCompatActivity {
 
                 // Clear input box
                 mSporociloEditText.setText("");
+
+                spinner.setVisibility(View.GONE);
+
             }
         });
 
         ChildEventListener mChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                spinner.setVisibility(View.VISIBLE);
+
                 Sporocilo sporocilo = dataSnapshot.getValue(Sporocilo.class);
                 mSporociloAdapter.add(sporocilo);
+
+                spinner.setVisibility(View.GONE);
             }
 
             @Override
@@ -176,6 +181,7 @@ public class ChatActivity extends AppCompatActivity {
 
         if(requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK){
             Uri selectedImageUri = data.getData();
+            spinner.setVisibility(View.VISIBLE);
 
             // Get reference to store file at chat_slike/<FILENAME>
             StorageReference photoRef = mChatSlikeStorageReference.child(selectedImageUri.getLastPathSegment());
@@ -189,6 +195,9 @@ public class ChatActivity extends AppCompatActivity {
                     mSporociloDatabaseReference.push().setValue(sporocilo);
 
                     mSporociloDatabaseReference2.push().setValue(sporocilo);
+
+                    spinner.setVisibility(View.GONE);
+
                 }
             });
 

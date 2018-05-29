@@ -33,7 +33,6 @@ public class FragmentZahteve extends Fragment implements View.OnClickListener {
 
     private List<Najem> najemList;
     private List<Instrument> instrumentList;
-    ProgressDialog napredek;
     private ZahtevaAdapter adapter;
     public ImageButton sprejmi;
     public ImageButton zavrni;
@@ -47,11 +46,6 @@ public class FragmentZahteve extends Fragment implements View.OnClickListener {
         sprejmi = inflater.inflate(R.layout.item_zahteva, container, false).findViewById(R.id.imageButtonSprejmi);
         zavrni = inflater.inflate(R.layout.item_zahteva, container, false).findViewById(R.id.imageButtonZavrni);
         */
-        napredek = new ProgressDialog(getActivity());
-        napredek.setTitle("Nalaganje");
-        napredek.setMessage("Pridobivamo podatke... ");
-        napredek.setCancelable(false);
-        napredek.show();
 
         rootView.setOnClickListener(this);
 
@@ -101,7 +95,6 @@ public class FragmentZahteve extends Fragment implements View.OnClickListener {
                         }
                     }
                 }
-                napredek.dismiss();
             }
         });
     }

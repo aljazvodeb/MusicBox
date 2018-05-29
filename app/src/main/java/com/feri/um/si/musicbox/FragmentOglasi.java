@@ -30,7 +30,6 @@ public class FragmentOglasi extends Fragment {
     private RecyclerView view;
 
     private List<Instrument> list;
-    ProgressDialog napredek;
     private OglasiAdapter adapter;
 
     @Override
@@ -44,11 +43,6 @@ public class FragmentOglasi extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        napredek = new ProgressDialog(getActivity());
-        napredek.setTitle("Nalaganje");
-        napredek.setMessage("Pridobivamo podatke... ");
-        napredek.setCancelable(false);
-        napredek.show();
 
         list = new ArrayList<>();
         adapter = new OglasiAdapter(getContext(), list);
@@ -81,7 +75,6 @@ public class FragmentOglasi extends Fragment {
                     }
 
                 }
-                napredek.dismiss();
             }
         });
     }
