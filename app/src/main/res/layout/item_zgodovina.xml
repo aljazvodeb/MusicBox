@@ -11,8 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        app:contentPadding="3dp"
-        android:layout_alignParentLeft="true">
+        app:contentPadding="3dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -33,36 +32,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:textColor="@color/greySecondary"
                     android:textSize="15sp"
-                    tools:text="200€"
-                    android:layout_alignParentLeft="true" />
+                    tools:text="200€" />
 
                 <TextView
                     android:id="@+id/vrstica_ime"
                     style="@style/AppTheme.Subheader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/vrstica_datum_od"
                     android:layout_alignParentTop="true"
                     android:layout_alignStart="@+id/vrstica_datum_od"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    tools:text="Koncertni klavir"
-                    android:layout_alignLeft="@+id/vrstica_datum_od" />
+                    tools:text="Koncertni klavir" />
 
                 <TextView
                     android:id="@+id/vrstica_datum_do"
                     style="@style/AppTheme.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="98dp"
+                    android:layout_toEndOf="@+id/pomisljaj"
                     android:textColor="@color/greySecondary"
-                    tools:text="1.1.2018"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="98dp" />
+                    tools:text="1.1.2018" />
 
                 <TextView
                     android:id="@+id/vrstica_datum_od"
@@ -103,13 +99,11 @@
                     android:id="@+id/pomisljaj"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="83dp"
+                    android:layout_toEndOf="@+id/vrstica_datum_od"
                     android:background="?android:attr/selectableItemBackground"
-                    android:text="-"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="83dp" />
+                    android:text=" - "
+                    tools:text="-" />
 
 
             </RelativeLayout>
