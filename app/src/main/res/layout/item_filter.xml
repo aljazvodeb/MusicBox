@@ -34,13 +34,10 @@
                     style="@style/AppTheme.Subheader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/vrstica_slika"
                     android:layout_toRightOf="@+id/vrstica_slika"
-                    android:ellipsize="end"
-                    android:maxLines="1"
                     tools:text="Koncertni klavir" />
 
                 <TextView
@@ -48,9 +45,7 @@
                     style="@style/AppTheme.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/vrstica_ime"
                     android:layout_alignLeft="@+id/vrstica_ime"
-                    android:layout_alignRight="@+id/vrstica_ime"
                     android:layout_alignStart="@+id/vrstica_ime"
                     android:layout_below="@+id/vrstica_ime"
                     android:textColor="@color/greySecondary"
