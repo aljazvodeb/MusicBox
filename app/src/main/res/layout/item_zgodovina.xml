@@ -70,7 +70,6 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/chat"
                     android:layout_toStartOf="@+id/chat"
-
                     android:textColor="@color/greySecondary"
                     tools:text="Aljaž Vodeb" />
 

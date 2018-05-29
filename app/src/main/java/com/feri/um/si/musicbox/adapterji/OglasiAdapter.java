@@ -54,7 +54,7 @@ public class OglasiAdapter extends RecyclerView.Adapter<OglasiAdapter.ViewHolder
         holder.ime.setText(oglasiList.get(position).getIme());
         holder.kategorija.setText(oglasiList.get(position).getKategorija());
         holder.mesto.setText(oglasiList.get(position).getMesto());
-        holder.cena.setText(Integer.toString(oglasiList.get(position).getCena())+"€");
+        holder.cena.setText(Integer.toString(oglasiList.get(position).getCena())+"€/dan");
         final String osebaID = oglasiList.get(position).osebaID;
 
         holder.gumb.setOnClickListener(new View.OnClickListener() {
