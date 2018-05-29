@@ -77,8 +77,10 @@ public class FragmentZgodovina extends Fragment {
                 for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     String trenutni = user.getDisplayName();
-                    String vBazi = doc.getDocument().getString("najemnik");
-                    if (trenutni.equals(vBazi)) {
+                    String vBazi_najemnik = doc.getDocument().getString("najemnik");
+                    String vBazi_najemodajalec = doc.getDocument().getString("najemodajalec");
+
+                    if (trenutni.equals(vBazi_najemnik) || trenutni.equals(vBazi_najemodajalec)) {
                         if (doc.getType() == DocumentChange.Type.ADDED) {
                             if (doc.getDocument().getString("status").equals("Potrjeno")) {
                                 Najem n = doc.getDocument().toObject(Najem.class).dodajID(doc.getDocument().getId());

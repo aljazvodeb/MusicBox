@@ -117,7 +117,6 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
          onInstrumentNalozen(snapshot.toObject(Instrument.class));
          onNajem(snapshot.toObject(Instrument.class));
          onChat(snapshot.toObject(Instrument.class));
-
      }
 
      // nalozimo podatke o instrumentu
@@ -157,7 +156,6 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
                  intent.putExtra("najemodajalec", instrument.getNajemodajalec());
                  intent.putExtra("glasbilo", instrument.getIme());
                  //intent.putExtra("slika", instrument.getSlika());
-
 
                  startActivity(intent);
              }
