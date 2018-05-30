@@ -55,7 +55,6 @@
                     app:srcCompat="@drawable/ic_filter_list_white_24px" />
 
                 <LinearLayout
-                    android:id="@+id/iskanje_vsebnik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -145,7 +144,6 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/nalaganje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/recycler_instrumenti"

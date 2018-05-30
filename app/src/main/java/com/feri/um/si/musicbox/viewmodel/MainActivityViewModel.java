@@ -3,7 +3,7 @@
 
 import android.arch.lifecycle.ViewModel;
 
-import com.feri.um.si.musicbox.Filtri;
+import com.feri.um.si.musicbox.modeli.Filtri;
 
  public class MainActivityViewModel extends ViewModel {
 

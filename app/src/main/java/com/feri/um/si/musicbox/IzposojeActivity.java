@@ -69,16 +69,13 @@ public class IzposojeActivity extends AppCompatActivity {
             // getItem is called to instantiate the fragment for the given page.
            switch (position) {
                case 0:
-                   FragmentOglasi tab1 = new FragmentOglasi();
-                   return tab1;
+                   return new FragmentOglasi();
 
                case 1:
-                   FragmentZahteve tab2 = new FragmentZahteve();
-                   return tab2;
+                   return new FragmentZahteve();
 
                case 2:
-                   FragmentZgodovina tab3 = new FragmentZgodovina();
-                   return tab3;
+                   return new FragmentZgodovina();
 
                    default:
                        return null;

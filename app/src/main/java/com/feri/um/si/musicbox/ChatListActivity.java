@@ -46,7 +46,7 @@ public class ChatListActivity extends AppCompatActivity {
         mPogovorAdapter = new PogovorAdapter(this, R.layout.item_pogovor);
         mPogovorListView.setAdapter(mPogovorAdapter);
 
-        //pridobi datasnapshot sporocila na "root node"
+        //pridobi datasnapshot sporocila
         DatabaseReference ref = mFirebaseDatabase.getReference().child("sporocila").child(mUporabnik);
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -68,22 +68,18 @@ public class ChatListActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                if (dataSnapshot.exists()) {
-                    spinner.setVisibility(View.VISIBLE);
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        if (dataSnapshot.exists()) {
-                            Pogovor pogovor = new Pogovor();
-                            pogovor.setSogovorec(dataSnapshot.getKey());
-                            pogovor.setGlasbilo(snapshot.getKey());
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Pogovor pogovor = new Pogovor();
+                        pogovor.setSogovorec(dataSnapshot.getKey());
+                        pogovor.setGlasbilo(snapshot.getKey());
 
-                            list.add(pogovor);
-                            mPogovorAdapter.add(pogovor);
-                            spinner.setVisibility(View.GONE);
-                        }
-                    }
-                } else {
-                    spinner.setVisibility(View.GONE);
+                        list.add(pogovor);
+                        mPogovorAdapter.add(pogovor);
+                        spinner.setVisibility(View.GONE);
                 }
+
+                spinner.setVisibility(View.GONE);
+
             }
 
             @Override

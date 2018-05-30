@@ -4,12 +4,8 @@
     <string name="vsa_mesta">Kjerkoli</string>
     <string name="vse_cene">Katerakoli cena</string>
     <string name="vsi_instrumenti">Vsi instrumenti </string>
-    <string name="kategorija">Kategorija</string>
     <string name="mesto">Mesto</string>
-    <string name="cena">Cena</string>
-    <string name="sortiraj">Sortiraj po</string>
     <string name="filtri">Filtri</string>
-    <string name="iskanje">Iskanje</string>
     <string name="sortiraj_po_ceni">Sortiraj po ceni</string>
     <string name="sortirano_po_ceni">Sortirano po ceni</string>
     <string name="sortiraj_po_kategoriji">Sortiraj po kategoriji</string>
@@ -17,27 +13,17 @@
     <string name="odjava">Odjava</string>
     <string name="preklic">Preklici</string>
     <string name="sporocilo_ni_rezultatov">Ni bilo mogoce najti rezulatov.</string>
-    <string name="sporocilo_napaka">Ni podatkov.</string>
-    <string name="name">Ime</string>
     <string name="cena_1">0-10€</string>
     <string name="cena_2">10-20€</string>
     <string name="cena_3">20€+</string>
-    <string name="vnesite_url_fotografije">Vnesite url fotografije</string>
     <string name="url_fotografije">URL fotografije</string>
-    <string name="opisite_glasbilo">Opišite glasbilo</string>
-    <string name="poimenujte_glasbilo">Poimenujte glasbilo</string>
-    <string name="ime_glasbila">Ime glasbila</string>
     <string name="dodaj">DODAJ</string>
-    <string name="vnesite_ceno">Vnesite ceno</string>
-    <string name="dodaj_glasbilo">Dodaj</string>
-    <string name="dodaj_instrument">Dodaj glasbilo</string>
     <string name="profil">Profil</string>
     <string name="zgodovina">Zgodovina</string>
     <string name="zahtevazanajem">Zahteva za najem</string>
     <string name="pogovori">Pogovori</string>
     <string name="stanje">Stanje</string>
     <string name="vrsta_glasbila">Vrsta glasbila</string>
-    <string name="podajte_kratek_opis">Podajte kratek opis</string>
     <string name="ime_glasbila1">Ime glasbila</string>
     <string name="poslji_sporocilo">Poslji</string>
     <string name="izberi">IZBERI</string>
@@ -47,9 +33,7 @@
     <string name="cena_dan">Cena/dan</string>
     <string name="cena_skupaj">Cena skupaj</string>
     <string name="zahteva">Pošlji zahtevo</string>
-    <string name="potrdi">Potrdi</string>
 
-    <string name="posodobi" />
     <!-- seznam glasbil -->
     <string-array name="kategorije">
         <item>@string/vse_kategorije</item>
@@ -163,11 +147,6 @@
         <item>@string/sortiraj_po_kategoriji</item>
     </string-array>
     <string name="title_activity_izposoje">IzposojeActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
     <string name="izposoje">Izposoje</string>
     <string name="oddaj_glasbilo">Oddaj glasbilo</string>
     <string name="zahteve">Zahteve</string>

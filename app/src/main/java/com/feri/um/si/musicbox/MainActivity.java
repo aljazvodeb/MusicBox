@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.feri.um.si.musicbox.adapterji.InstrumentAdapter;
+import com.feri.um.si.musicbox.modeli.Filtri;
 import com.feri.um.si.musicbox.viewmodel.MainActivityViewModel;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;

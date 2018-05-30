@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 
+import com.feri.um.si.musicbox.modeli.Filtri;
 import com.feri.um.si.musicbox.modeli.Instrument;
 import com.google.firebase.firestore.Query;
 
