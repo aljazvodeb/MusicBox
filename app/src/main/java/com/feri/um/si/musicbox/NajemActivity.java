@@ -83,10 +83,12 @@ public class NajemActivity extends AppCompatActivity {
                     datumodA = sdf.format(cal.getTime());
                         try {
                             Date datum1 = sdf.parse(datumodA);
-                            Date datum2 = sdf.parse(datumdoA);
-                            long razl = datum2.getTime()-datum1.getTime();
-                            cenaskupaj.setText(TimeUnit.DAYS.convert(razl, TimeUnit.MILLISECONDS)*cenadanint+" €"); //izracunamo ceno
-                        }catch (Exception e) {
+                            if (!datum_do.getText().toString().equals("")) {
+                                Date datum2 = sdf.parse(datumdoA);
+                                long razl = datum2.getTime() - datum1.getTime();
+                                cenaskupaj.setText(TimeUnit.DAYS.convert(razl, TimeUnit.MILLISECONDS) * cenadanint + " €"); //izracunamo ceno
+                            }
+                            }catch (Exception e) {
                             e.printStackTrace();
                         }
                 } else {

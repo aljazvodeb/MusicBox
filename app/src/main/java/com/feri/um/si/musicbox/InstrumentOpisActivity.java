@@ -28,8 +28,8 @@ import butterknife.OnClick;
 
 public class InstrumentOpisActivity extends AppCompatActivity implements EventListener<DocumentSnapshot> {
 
-     private static final String TAG = "InstrumentDetail";
-     public static final String KEY_INSTRUMENT_ID = "key_instrument_id";
+     private static final String TAG = "OPIS";
+     public static final String KEY_INSTRUMENT_ID = "kljuc_instrument_id";
      private FirebaseFirestore mFirestore;
      private DocumentReference mInstrumentRef;
      private ListenerRegistration mInstrumentRegistration;

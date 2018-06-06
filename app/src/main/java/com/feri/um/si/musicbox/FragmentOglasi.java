@@ -1,6 +1,5 @@
 package com.feri.um.si.musicbox;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -52,30 +51,32 @@ public class FragmentOglasi extends Fragment {
         view.setLayoutManager(new LinearLayoutManager(getActivity()));
         view.setAdapter(adapter);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("Instrumenti").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
 
-        db.collection("Instrumenti").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-
-                if (e != null) {
-                    Log.d(TAG, "Napaka:" + e.getMessage());
-                }
-                // pridobi podatke iz baze
-
-                for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    String trenutni = user.getDisplayName();
-                    String vBazi = doc.getDocument().getString("najemodajalec");
-                    if (trenutni.equals(vBazi)) { // ce sta uporabnik v bazi in trenutno prijavljeni uporabnik enaka potem prikazi oglase
-                        if (doc.getType() == DocumentChange.Type.ADDED) {
-                            Instrument i = doc.getDocument().toObject(Instrument.class).dodajID(doc.getDocument().getId());
-                            list.add(i);
-                            adapter.notifyDataSetChanged(); // obvestimo adapter o spremenjenih podatkih
-                        }
+                    if (e != null) {
+                        Log.d(TAG, "Napaka:" + e.getMessage());
                     }
 
+                    // pridobi podatke iz baze
+                    try {
+                    for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        String trenutni = user.getDisplayName();
+                        String vBazi = doc.getDocument().getString("najemodajalec");
+                        if (trenutni.equals(vBazi)) { // ce sta uporabnik v bazi in trenutno prijavljeni uporabnik enaka potem prikazi oglase
+                            if (doc.getType() == DocumentChange.Type.ADDED) {
+                                Instrument i = doc.getDocument().toObject(Instrument.class).dodajID(doc.getDocument().getId());
+                                list.add(i);
+                                adapter.notifyDataSetChanged(); // obvestimo adapter o spremenjenih podatkih
+                            }
+                        }
+                        }
+                    }catch (Exception ex) {
+                        Log.d(TAG, "Napaka:" + ex.getMessage());
                 }
-            }
-        });
+                }
+            });
     }
 }

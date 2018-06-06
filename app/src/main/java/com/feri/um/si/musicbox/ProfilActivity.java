@@ -145,7 +145,7 @@ public class ProfilActivity extends FragmentActivity {
         });
 
     }
-
+    // metode za dostop do uporabnika v bazi
     public static FirebaseUser getFirebaseUser()
     {
         return getFirebaseAuth().getCurrentUser();

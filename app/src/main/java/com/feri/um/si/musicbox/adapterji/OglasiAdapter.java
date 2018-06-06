@@ -57,25 +57,24 @@ public class OglasiAdapter extends RecyclerView.Adapter<OglasiAdapter.ViewHolder
         holder.cena.setText(Integer.toString(oglasiList.get(position).getCena())+"€/dan");
         final String osebaID = oglasiList.get(position).osebaID;
 
-        holder.gumb.setOnClickListener(new View.OnClickListener() {
+        holder.gumb.setOnClickListener(new View.OnClickListener() { // brisanje oglasa
             @Override
             public void onClick(View v) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-                        AlertDialog.Builder builder;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
-                        } else {
-                            builder = new AlertDialog.Builder(context);
-                        }
-                        builder.setTitle("Brisanje oglasa")
-                                .setMessage("Ali ste prepričani, da želite zbrisati oglas?")
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                AlertDialog.Builder builder;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
+                } else {
+                    builder = new AlertDialog.Builder(context);
+                }
+                builder.setTitle("Brisanje oglasa").setMessage("Ali ste prepričani, da želite zbrisati oglas?").setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
+
                                         FirebaseFirestore.getInstance().collection("Instrumenti").document(osebaID).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                 Toast.makeText(context, "Oglas je uspešno zbrisan!", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(context, "Oglas je uspešno zbrisan!", Toast.LENGTH_LONG).show();
                                                  Intent intent = new Intent(context, IzposojeActivity.class);
                                                  context.startActivity(intent);
                                             }

@@ -85,6 +85,7 @@ public class ZgodovinaAdapter extends RecyclerView.Adapter<ZgodovinaAdapter.View
             @Override
             public void onClick(View v) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
+                // povezava do baze
                 db.collection("Najem").document(osebaID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -94,6 +95,7 @@ public class ZgodovinaAdapter extends RecyclerView.Adapter<ZgodovinaAdapter.View
                             String najemnik = documentSnapshot.getString("najemnik");
                             String najemodajalec = documentSnapshot.getString("najemodajalec");
 
+                            // povezava na chat za najemodajalca in najemnika posebej
                             if (trenutni.equals(najemnik)) {
                                 String ime = documentSnapshot.getString("ime");
                                 Intent intent = new Intent(context, ChatActivity.class);

@@ -44,10 +44,10 @@ public abstract class FirestoreAdapter<VH extends RecyclerView.ViewHolder>
     }
 
     public void setQuery(Query query) {
-        // Stop listening
+        // nehaj poslušat dogodke
         stopListening();
 
-        // Clear existinkodig data
+        // zbriši obstoječe podatke
         mSnapshots.clear();
         notifyDataSetChanged();
 
@@ -59,15 +59,14 @@ public abstract class FirestoreAdapter<VH extends RecyclerView.ViewHolder>
     public void onEvent(QuerySnapshot documentSnapshots,
                         FirebaseFirestoreException e) {
 
-        // Handle errors
+        // v primeru napak
         if (e != null) {
             Log.w(TAG, "onEvent:error", e);
             return;
         }
 
-        // Dispatch the event
         for (DocumentChange change : documentSnapshots.getDocumentChanges()) {
-            // Snapshot of the changed document
+            // Snapshot spremenjenega dokumenta
             DocumentSnapshot snapshot = change.getDocument();
 
             switch (change.getType()) {
@@ -97,11 +96,11 @@ public abstract class FirestoreAdapter<VH extends RecyclerView.ViewHolder>
 
     protected void onDocumentModified(DocumentChange change) {
         if (change.getOldIndex() == change.getNewIndex()) {
-            // Item changed but remained in same position
+            // v primeru da se je vrstica spremenila, ostala pa je na isti poziciji
             mSnapshots.set(change.getOldIndex(), change.getDocument());
             notifyItemChanged(change.getOldIndex());
         } else {
-            // Item changed and changed position
+            // // v primeru da se je vrstica spremenila in ni ostala na isti poziciji
             mSnapshots.remove(change.getOldIndex());
             mSnapshots.add(change.getNewIndex(), change.getDocument());
             notifyItemMoved(change.getOldIndex(), change.getNewIndex());

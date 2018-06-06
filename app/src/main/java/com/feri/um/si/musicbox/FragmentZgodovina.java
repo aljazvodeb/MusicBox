@@ -1,6 +1,5 @@
 package com.feri.um.si.musicbox;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -57,8 +56,6 @@ public class FragmentZgodovina extends Fragment {
         mList_zgodovina.setAdapter(najemListAdapter);
 
         mFirestore = FirebaseFirestore.getInstance();
-
-
         mFirestore.collection("Najem").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
@@ -66,25 +63,29 @@ public class FragmentZgodovina extends Fragment {
                 if (e != null) {
                     Log.d(TAG, "Napaka:" + e.getMessage());
                 }
+                // pridobimo podatke iz baze
+                try {
+                    for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        String trenutni = user.getDisplayName();
+                        String vBazi_najemnik = doc.getDocument().getString("najemnik");
+                        String vBazi_najemodajalec = doc.getDocument().getString("najemodajalec");
 
-                for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    String trenutni = user.getDisplayName();
-                    String vBazi_najemnik = doc.getDocument().getString("najemnik");
-                    String vBazi_najemodajalec = doc.getDocument().getString("najemodajalec");
-
-                    if (trenutni.equals(vBazi_najemnik) || trenutni.equals(vBazi_najemodajalec)) {
-                        if (doc.getType() == DocumentChange.Type.ADDED) {
-                            if (doc.getDocument().getString("status").equals("Potrjeno")) {
-                                Najem n = doc.getDocument().toObject(Najem.class).dodajID(doc.getDocument().getId());
-                                Instrument i = doc.getDocument().toObject(Instrument.class).dodajID(doc.getDocument().getId());
-                                instrumentList.add(i);
-                                najemList.add(n);
-                                najemListAdapter.notifyDataSetChanged();
+                        if (trenutni.equals(vBazi_najemnik) || trenutni.equals(vBazi_najemodajalec)) {
+                            if (doc.getType() == DocumentChange.Type.ADDED) {
+                                if (doc.getDocument().getString("status").equals("Potrjeno")) { // kjer je status "Potrjeno"
+                                    Najem n = doc.getDocument().toObject(Najem.class).dodajID(doc.getDocument().getId());
+                                    Instrument i = doc.getDocument().toObject(Instrument.class).dodajID(doc.getDocument().getId());
+                                    instrumentList.add(i);
+                                    najemList.add(n);
+                                    najemListAdapter.notifyDataSetChanged();
+                                }
                             }
                         }
                     }
-                }
+                }catch (Exception ex) {
+                        Log.d(TAG, "Napaka:" + ex.getMessage());
+                    }
             }
         });
     }

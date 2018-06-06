@@ -1,9 +1,14 @@
 package com.feri.um.si.musicbox;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -70,20 +75,40 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        setSupportActionBar(mToolbar);
 
-        mViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        if(!jePovezano(MainActivity.this)) { // v primeru da ni interneta obvestimo uporabnika
+            setContentView(R.layout.activity_main);
+            buildDialog(MainActivity.this).show();
+            ButterKnife.bind(this);
+            setSupportActionBar(mToolbar);
 
-        // omogocimo loge
-        FirebaseFirestore.setLoggingEnabled(true);
+            mViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
 
-        // inicializiramo Firestore in RecyclerView
-        initFirestore();
-        initRecyclerView();
+            FirebaseFirestore.setLoggingEnabled(true);
 
-        mFilterDialog = new FilterDialogFragment();
+            initFirestore();
+            initRecyclerView();
+
+            mFilterDialog = new FilterDialogFragment();
+        }
+        else {
+            setContentView(R.layout.activity_main);
+            ButterKnife.bind(this);
+            setSupportActionBar(mToolbar);
+
+            mViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+
+            // omogocimo loge
+            FirebaseFirestore.setLoggingEnabled(true);
+
+            // inicializiramo Firestore in RecyclerView
+            initFirestore();
+            initRecyclerView();
+
+            mFilterDialog = new FilterDialogFragment();
+        }
+
+
     }
 
     private void initFirestore() {
@@ -97,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void initRecyclerView() {
         if (mQuery == null) {
-            Log.w(TAG, "No query, not initializing RecyclerView");
+            Log.w(TAG, "Napaka");
         }
 
         mAdapter = new InstrumentAdapter(mQuery, this) {
@@ -130,8 +155,8 @@ public class MainActivity extends AppCompatActivity implements
         super.onStart();
 
         // ce je potrebna prijava
-        if (shouldStartSignIn()) {
-            startSignIn();
+        if (jePotrebnaPrijava()) {
+            startPrijava();
             return;
         }
 
@@ -204,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements
                 break;
             case R.id.menu_odjava:
                 AuthUI.getInstance().signOut(this);
-                startSignIn();
+                startPrijava();
                 break;
 
             case R.id.menu_izposoje:
@@ -232,8 +257,8 @@ public class MainActivity extends AppCompatActivity implements
             mViewModel.setPrijavljaSe(false);
             if (resultCode == RESULT_CANCELED)
                 finish();
-            else if (resultCode != RESULT_OK && shouldStartSignIn()) {
-                startSignIn();
+            else if (resultCode != RESULT_OK && jePotrebnaPrijava()) {
+                startPrijava();
             }
         }
     }
@@ -259,11 +284,11 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
-    private boolean shouldStartSignIn() {
+    private boolean jePotrebnaPrijava() {
         return (!mViewModel.getPrijavljaSe() && FirebaseAuth.getInstance().getCurrentUser() == null);
     }
 
-    private void startSignIn() {
+    private void startPrijava() {
         // prijava s firebase
         Intent intent = AuthUI.getInstance().createSignInIntentBuilder()
                 .setAvailableProviders(Collections.singletonList(
@@ -273,5 +298,38 @@ public class MainActivity extends AppCompatActivity implements
 
         startActivityForResult(intent, RC_SIGN_IN);
         mViewModel.setPrijavljaSe(true);
+    }
+
+    public boolean jePovezano (Context context) {
+
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netinfo = cm.getActiveNetworkInfo();
+
+        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
+            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+            if((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting())) return true;
+        else return false;
+        } else
+        return false;
+    }
+
+    public AlertDialog.Builder buildDialog(Context c) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setTitle("Ni internetne povezave");
+        String bsd = "Pritisnite OK za izhod";
+        builder.setMessage("Za normalno delovanje aplikacije morate omogočiti mobilne podatke ali WIFI."+"\n"+"\n"+bsd);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                finish();
+            }
+        });
+
+        return builder;
     }
 }

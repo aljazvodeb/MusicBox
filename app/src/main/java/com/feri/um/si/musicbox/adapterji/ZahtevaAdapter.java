@@ -53,7 +53,7 @@ public class ZahtevaAdapter  extends RecyclerView.Adapter<ZahtevaAdapter.ViewHol
         holder.najemnik.setText(zahtevaList.get(position).getNajemnik());
 
         final String osebaID = zahtevaList.get(position).osebaID;
-
+        // sprejem zahteve
         holder.sprejmi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +61,7 @@ public class ZahtevaAdapter  extends RecyclerView.Adapter<ZahtevaAdapter.ViewHol
                 try {
                     db.collection("Najem")
                             .document(osebaID)
-                            .update("status", "Potrjeno").addOnSuccessListener(new OnSuccessListener<Void>() {
+                            .update("status", "Potrjeno").addOnSuccessListener(new OnSuccessListener<Void>() { // sprememba statusa v bazi ob potrditvi zahteve
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(context, "Potrjeno!", Toast.LENGTH_LONG).show();
@@ -81,7 +81,7 @@ public class ZahtevaAdapter  extends RecyclerView.Adapter<ZahtevaAdapter.ViewHol
                 }
             }
         });
-
+        // zavrnitev
         holder.zavrni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

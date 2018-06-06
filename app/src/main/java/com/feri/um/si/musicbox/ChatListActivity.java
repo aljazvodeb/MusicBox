@@ -3,6 +3,7 @@ package com.feri.um.si.musicbox;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 public class ChatListActivity extends AppCompatActivity {
 
+    private static final String TAG = "Chat";
     private PogovorAdapter mPogovorAdapter;
     private ProgressBar spinner;
     ArrayList<Pogovor> list = new ArrayList<>();
@@ -67,8 +69,8 @@ public class ChatListActivity extends AppCompatActivity {
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                try {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Pogovor pogovor = new Pogovor();
                         pogovor.setSogovorec(dataSnapshot.getKey());
                         pogovor.setGlasbilo(snapshot.getKey());
@@ -76,6 +78,9 @@ public class ChatListActivity extends AppCompatActivity {
                         list.add(pogovor);
                         mPogovorAdapter.add(pogovor);
                         spinner.setVisibility(View.GONE);
+                    }
+                } catch (Exception e) {
+                    Log.d(TAG, "Napaka:" + e.getMessage());
                 }
 
                 spinner.setVisibility(View.GONE);
