@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements
 
         // pridobi najboljse ocenjena glasbila
         mQuery = mFirestore.collection("Instrumenti")
-                .orderBy("avgOcena", Query.Direction.DESCENDING)
+                .orderBy("cena", Query.Direction.DESCENDING)
                 .limit(LIMIT);
     }
 

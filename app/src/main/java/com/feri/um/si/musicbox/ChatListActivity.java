@@ -116,7 +116,6 @@ public class ChatListActivity extends AppCompatActivity {
                 i.putExtra("najemodajalec", list.get(position).getSogovorec());
                 i.putExtra("glasbilo", list.get(position).getGlasbilo());
 
-
                 startActivity(i);
             }
         });

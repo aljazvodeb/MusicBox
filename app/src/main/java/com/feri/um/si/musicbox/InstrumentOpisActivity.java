@@ -89,9 +89,6 @@ public class InstrumentOpisActivity extends AppCompatActivity implements EventLi
          onBackPressed();
      }
 
-
-
-
      @Override
      public void onStart() {
          super.onStart();
